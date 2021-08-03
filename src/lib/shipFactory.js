@@ -6,9 +6,13 @@ const buildHitRecord = (shipLength) => {
   return hitRecord;
 };
 
+function hit(pos) {
+  this.hitRecord[pos] = "hit";
+}
+
 const shipFactory = (length) => {
   const hitRecord = buildHitRecord(length);
-  return { length, hitRecord, sunk: false };
+  return { length, hitRecord, sunk: false, hit };
 };
 
 export { buildHitRecord, shipFactory };
