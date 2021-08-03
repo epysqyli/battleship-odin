@@ -17,13 +17,19 @@ const ships = [
 
 const gameboard = () => {
   // create array of 100 coord objects
-  let board = []
+  let board = [];
   let x = 1;
   let y = 1;
   while (x !== 10 && y <= 10) {
     x = 1;
     while (x <= 10) {
-      board.push({ x: { pos: x, empty: true, miss: false, attack: false }, y: { pos: y, empty: true, miss: false, attack: false } });
+      board.push({
+        x,
+        y,
+        empty: true,
+        miss: false,
+        attack: false,
+      });
       x++;
     }
     y++;
