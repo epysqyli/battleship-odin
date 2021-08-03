@@ -68,10 +68,10 @@ describe("Throws error on invalid coordinates", () => {
     );
   });
 
-  test("if position is already taken", () => {
-    testBoard.placeShip("submarine", "horizontal", 4, 5);
-    expect(() => testBoard.placeShip("cruiser", "horizontal", 4, 5)).toThrow(
-      "Coordinates not free"
+  test("if ship is longer than available ceels", () => {
+    testBoard.placeShip("submarine", "vertical", 6, 5);
+    expect(() => testBoard.placeShip("carrier", "horizontal", 4, 5)).toThrow(
+      "Path is not free"
     );
   });
 });

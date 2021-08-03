@@ -12,31 +12,44 @@ function getCoords(x, y) {
   return this.board.find((item) => (item.x === x) & (item.y === y));
 }
 
-// write this next!
-const checkFreeCoords = (x1, y1, x2, y2, direction) => {
-  // check whether all cells are free;
-  if (direction === "horizontal") {
-    // traverse horizontally
-  }
-};
-
 function placeShip(shipType, direction, x, y) {
   if (x > 10 || y > 10) {
     throw new Error("Either x or y are not valid coordinates");
   }
 
-  // checks for position validity if already present ship --> write more general function
-  const coords = this.board.find(
-    (coords) => (coords.x === x) & (coords.y === y)
-  );
-
-  if (coords.ship) {
-    throw new Error("Coordinates not free");
-  }
-  // position validity check end
-
   const ship = ships.find((ship) => ship[shipType]);
   let shipLength = ship[shipType].length;
+
+  // // general coordinates validity check based on ship length
+  if (direction === "horizontal") {
+    let coordsToCheck = [];
+    for (let i = 0; i < shipLength; i++) {
+      this.board.forEach((coords) => {
+        if (coords.x === x + i && coords.y === y) {
+          coordsToCheck.push(coords);
+        }
+      });
+    }
+    if (coordsToCheck.every((coords) => !coords.ship)) {
+      // do nothing
+    } else {
+      throw new Error("Path is not free");
+    }
+  } else if (direction == "vertical") {
+    let coordsToCheck = [];
+    for (let i = 0; i < shipLength; i++) {
+      this.board.forEach((coords) => {
+        if (coords.x === x && coords.y === y + 1) {
+          coordsToCheck.push(coords);
+        }
+      });
+    }
+    if (coordsToCheck.every((coords) => !coords.ship)) {
+      // do nothing
+    } else {
+      throw new Error("Path is not free");
+    }
+  }
 
   if (direction === "horizontal") {
     if (x + shipLength > 10) {
