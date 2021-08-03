@@ -12,9 +12,21 @@ function getCoords(x, y) {
   return this.board.find((item) => (item.x === x) & (item.y === y));
 }
 
+const checkFreeCoords = (x1, y1, x2, y2, direction) => {
+  // check whether all cells are free;
+  if (direction === "horizontal") {
+    // traverse horizontally
+  }
+}
+
 function placeShip(shipType, direction, x, y) {
   if (x > 10 || y > 10) {
     throw new Error("Either x or y are not valid coordinates");
+  }
+
+  const coords = this.board.find((coords) => coords.x === x & coords.y === y);
+  if (coords.shipType) {
+    throw new Error("Coordinates not free");
   }
 
   const ship = ships.find((ship) => ship[shipType]);

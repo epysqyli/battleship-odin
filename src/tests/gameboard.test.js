@@ -8,7 +8,7 @@ test("Gameboard has a 10x10 board with 100 cells", () => {
 test("Empty coords cell should have null shipType", () => {
   let testBoard = gameboard();
   expect(testBoard.board[25].shipType).toBeNull();
-})
+});
 
 describe("places the ships according to ship type and given coords", () => {
   test("places the carrier horizontally to take 5 cells", () => {
@@ -49,15 +49,22 @@ describe("Throws error on invalid coordinates", () => {
     );
   });
 
-  test("Throws error if ship length causes horizontal overflow", () => {
+  test("if ship length causes horizontal overflow", () => {
     expect(() => testBoard.placeShip("carrier", "horizontal", 8, 8)).toThrow(
       "Ship is too long for these coordinates"
     );
   });
 
-  test("Throws error if ship length causes vertical overflow", () => {
+  test("if ship length causes vertical overflow", () => {
     expect(() => testBoard.placeShip("carrier", "vertical", 8, 8)).toThrow(
       "Ship is too long for these coordinates"
+    );
+  });
+
+  test("if position is already taken", () => {
+    testBoard.placeShip("submarine", "horizontal", 4, 5);
+    expect(() => testBoard.placeShip("cruiser", "horizontal", 4, 5)).toThrow(
+      "Coordinates not free"
     );
   });
 });
