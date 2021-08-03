@@ -15,8 +15,26 @@ const ships = [
   { destroyer: shipFactory(1), quantity: 5 },
 ];
 
+function getCoords(x, y) {
+  return this.board.filter((item) => (item.x === x) & (item.y === y))[0];
+}
+
+function placeShip(shipType, x, y) {
+  const ship = ships.filter((ship) => ship[shipType])[0];
+
+  // if horizontal positioning
+  for (let i = 0; i < ship[shipType].length; i++) {
+    this.board.forEach((coords) => {
+      if (coords.x === x + i && coords.y === y) {
+        coords.empty = false;
+      }
+    });
+  }
+
+  // if vertical positioning
+}
+
 const gameboard = () => {
-  // create array of 100 coord objects
   let board = [];
   let x = 1;
   let y = 1;
@@ -34,7 +52,7 @@ const gameboard = () => {
     }
     y++;
   }
-  return board;
+  return { board, getCoords, placeShip };
 };
 
 export default gameboard;
