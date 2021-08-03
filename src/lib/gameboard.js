@@ -1,12 +1,5 @@
 import { shipFactory } from "./shipFactory";
 
-// in order to place a ship:
-// x and y coords
-// horizontal or vertical orientation
-// x and y should be empty taking into account ship length and
-// ship orientation
-// ship cannot be placed, totally or partially, outside of the board
-
 const ships = [
   { carrier: shipFactory(5), quantity: 1 },
   { battleship: shipFactory(4), quantity: 2 },
@@ -20,10 +13,18 @@ function getCoords(x, y) {
 }
 
 function placeShip(shipType, direction, x, y) {
+  if (x > 10 || y > 10) {
+    throw new Error("Either x or y are not valid coordinates");
+  }
+
   const ship = ships.find((ship) => ship[shipType]);
   let shipLength = ship[shipType].length;
 
   if (direction === "horizontal") {
+    if (x + shipLength > 10) {
+      throw new Error("Ship is too long for these coordinates");
+    }
+
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
@@ -32,6 +33,9 @@ function placeShip(shipType, direction, x, y) {
       });
     }
   } else if (direction === "vertical") {
+    if (y + shipLength > 10) {
+      throw new Error("Ship is too long for these coordinates");
+    }
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
