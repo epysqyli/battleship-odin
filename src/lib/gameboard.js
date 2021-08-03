@@ -12,6 +12,7 @@ function getCoords(x, y) {
   return this.board.find((item) => (item.x === x) & (item.y === y));
 }
 
+// write this next!
 const checkFreeCoords = (x1, y1, x2, y2, direction) => {
   // check whether all cells are free;
   if (direction === "horizontal") {
@@ -24,6 +25,7 @@ function placeShip(shipType, direction, x, y) {
     throw new Error("Either x or y are not valid coordinates");
   }
 
+  // checks for position validity if already present ship --> write more general function
   const coords = this.board.find(
     (coords) => (coords.x === x) & (coords.y === y)
   );
@@ -31,6 +33,7 @@ function placeShip(shipType, direction, x, y) {
   if (coords.ship) {
     throw new Error("Coordinates not free");
   }
+  // position validity check end
 
   const ship = ships.find((ship) => ship[shipType]);
   let shipLength = ship[shipType].length;

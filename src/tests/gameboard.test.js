@@ -14,29 +14,36 @@ describe("places the ships according to ship type and given coords", () => {
   test("places the carrier horizontally to take 5 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("carrier", "horizontal", 3, 3);
-    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(4, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(5, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(6, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(7, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(4, 3).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(5, 3).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(6, 3).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(7, 3).ship.name).toEqual("carrier");
   });
 
   test("places the carrier vertically to take 5 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("carrier", "vertical", 3, 3);
-    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 4).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 5).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 6).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 7).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(3, 4).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(3, 5).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(3, 6).ship.name).toEqual("carrier");
+    expect(testBoard.getCoords(3, 7).ship.name).toEqual("carrier");
   });
 
   test("places the cruiser vertically to take 3 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("cruiser", "vertical", 3, 3);
-    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 4).ship).not.toBeNull();
-    expect(testBoard.getCoords(3, 5).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship.name).toEqual("cruiser");
+    expect(testBoard.getCoords(3, 4).ship.name).toEqual("cruiser");
+    expect(testBoard.getCoords(3, 5).ship.name).toEqual("cruiser");
+  });
+
+  test("places the destroyer horizontally to take 2 cells", () => {
+    let testBoard = gameboard();
+    testBoard.placeShip("destroyer", "horizontal", 5, 5);
+    expect(testBoard.getCoords(5, 5).ship.name).toEqual("destroyer");
+    expect(testBoard.getCoords(6, 5).ship.name).toEqual("destroyer");
   });
 });
 
