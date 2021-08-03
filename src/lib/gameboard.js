@@ -40,7 +40,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
-          coords.shipType = shipType;
+          coords.shipType = ship[shipType];
         }
       });
     }
@@ -51,7 +51,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
-          coords.shipType = shipType;
+          coords.shipType = ship[shipType];
         }
       });
     }
