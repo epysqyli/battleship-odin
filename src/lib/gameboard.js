@@ -28,7 +28,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
-          coords.empty = false;
+          coords.shipType = shipType;
         }
       });
     }
@@ -39,7 +39,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
-          coords.empty = false;
+          coords.shipType = shipType;
         }
       });
     }
@@ -56,7 +56,7 @@ const gameboard = () => {
       board.push({
         x,
         y,
-        empty: true,
+        shipType: null,
         miss: false,
         attack: false,
       });
