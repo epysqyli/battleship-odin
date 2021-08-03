@@ -19,19 +19,29 @@ function getCoords(x, y) {
   return this.board.filter((item) => (item.x === x) & (item.y === y))[0];
 }
 
-function placeShip(shipType, x, y) {
+function placeShip(shipType, direction, x, y) {
   const ship = ships.filter((ship) => ship[shipType])[0];
+  let shipLength = ship[shipType].length;
 
   // if horizontal positioning
-  for (let i = 0; i < ship[shipType].length; i++) {
-    this.board.forEach((coords) => {
-      if (coords.x === x + i && coords.y === y) {
-        coords.empty = false;
-      }
-    });
+  if (direction === "horizontal") {
+    for (let i = 0; i < shipLength; i++) {
+      this.board.forEach((coords) => {
+        if (coords.x === x + i && coords.y === y) {
+          coords.empty = false;
+        }
+      });
+    }
+  } else if (direction === "vertical") {
+    // if vertical positioning
+    for (let i = 0; i < shipLength; i++) {
+      this.board.forEach((coords) => {
+        if (coords.x === x && coords.y === y + i) {
+          coords.empty = false;
+        }
+      });
+    }
   }
-
-  // if vertical positioning
 }
 
 const gameboard = () => {
