@@ -1,11 +1,11 @@
 import { shipFactory } from "./shipFactory";
 
 const ships = [
-  { carrier: shipFactory(5), quantity: 1 },
-  { battleship: shipFactory(4), quantity: 2 },
-  { cruiser: shipFactory(3), quantity: 3 },
-  { submarine: shipFactory(2), quantity: 4 },
-  { destroyer: shipFactory(1), quantity: 5 },
+  { carrier: shipFactory("carrier", 5) },
+  { battleship: shipFactory("battleship", 4) },
+  { cruiser: shipFactory("cruiser", 3) },
+  { submarine: shipFactory("submarine", 2) },
+  { destroyer: shipFactory("destroyer", 1) },
 ];
 
 function getCoords(x, y) {
@@ -17,14 +17,16 @@ const checkFreeCoords = (x1, y1, x2, y2, direction) => {
   if (direction === "horizontal") {
     // traverse horizontally
   }
-}
+};
 
 function placeShip(shipType, direction, x, y) {
   if (x > 10 || y > 10) {
     throw new Error("Either x or y are not valid coordinates");
   }
 
-  const coords = this.board.find((coords) => coords.x === x & coords.y === y);
+  const coords = this.board.find(
+    (coords) => (coords.x === x) & (coords.y === y)
+  );
   if (coords.shipType) {
     throw new Error("Coordinates not free");
   }
