@@ -16,14 +16,13 @@ const ships = [
 ];
 
 function getCoords(x, y) {
-  return this.board.filter((item) => (item.x === x) & (item.y === y))[0];
+  return this.board.find((item) => (item.x === x) & (item.y === y));
 }
 
 function placeShip(shipType, direction, x, y) {
-  const ship = ships.filter((ship) => ship[shipType])[0];
+  const ship = ships.find((ship) => ship[shipType]);
   let shipLength = ship[shipType].length;
 
-  // if horizontal positioning
   if (direction === "horizontal") {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
@@ -33,7 +32,6 @@ function placeShip(shipType, direction, x, y) {
       });
     }
   } else if (direction === "vertical") {
-    // if vertical positioning
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
