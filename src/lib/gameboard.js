@@ -2,7 +2,7 @@ import { shipFactory } from "./shipFactory";
 
 // in order to place a ship:
 // x and y coords
-// horizontal or vertical
+// horizontal or vertical orientation
 // x and y should be empty taking into account ship length and
 // ship orientation
 // ship cannot be placed, totally or partially, outside of the board
@@ -23,7 +23,7 @@ const gameboard = () => {
   while (x !== 10 && y <= 10) {
     x = 1;
     while (x <= 10) {
-      board.push({ x, y });
+      board.push({ x: { pos: x, empty: true, miss: false, attack: false }, y: { pos: y, empty: true, miss: false, attack: false } });
       x++;
     }
     y++;
