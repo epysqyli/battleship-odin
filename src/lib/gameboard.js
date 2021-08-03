@@ -20,7 +20,7 @@ function placeShip(shipType, direction, x, y) {
   const ship = ships.find((ship) => ship[shipType]);
   let shipLength = ship[shipType].length;
 
-  // // general coordinates validity check based on ship length
+  //  general coordinates validity check based on ship length
   if (direction === "horizontal") {
     let coordsToCheck = [];
     for (let i = 0; i < shipLength; i++) {
@@ -30,12 +30,10 @@ function placeShip(shipType, direction, x, y) {
         }
       });
     }
-    if (coordsToCheck.every((coords) => !coords.ship)) {
-      // do nothing
-    } else {
+    if (coordsToCheck.some((coords) => coords.ship)) {
       throw new Error("Path is not free");
     }
-  } else if (direction == "vertical") {
+  } else if (direction === "vertical") {
     let coordsToCheck = [];
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
@@ -44,13 +42,12 @@ function placeShip(shipType, direction, x, y) {
         }
       });
     }
-    if (coordsToCheck.every((coords) => !coords.ship)) {
-      // do nothing
-    } else {
+    if (coordsToCheck.some((coords) => coords.ship)) {
       throw new Error("Path is not free");
     }
   }
 
+  // place ship on the cells since all checks have been passed
   if (direction === "horizontal") {
     if (x + shipLength > 10) {
       throw new Error("Ship is too long for these coordinates");
