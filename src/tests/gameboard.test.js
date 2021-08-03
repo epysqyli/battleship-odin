@@ -58,13 +58,13 @@ describe("Throws error on invalid coordinates", () => {
 
   test("if ship length causes horizontal overflow", () => {
     expect(() => testBoard.placeShip("carrier", "horizontal", 8, 8)).toThrow(
-      "Ship is too long for these coordinates"
+      "Ship does not fit on the board"
     );
   });
 
   test("if ship length causes vertical overflow", () => {
     expect(() => testBoard.placeShip("carrier", "vertical", 8, 8)).toThrow(
-      "Ship is too long for these coordinates"
+      "Ship does not fit on the board"
     );
   });
 

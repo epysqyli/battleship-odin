@@ -22,6 +22,16 @@ function placeShip(shipType, direction, x, y) {
 
   //  general coordinates validity check based on ship length
   if (direction === "horizontal") {
+    if (x + shipLength > 10) {
+      throw new Error("Ship does not fit on the board");
+    }
+  } else if (direction === "vertical") {
+    if (y + shipLength > 10) {
+      throw new Error("Ship does not fit on the board");
+    }
+  }
+
+  if (direction === "horizontal") {
     let coordsToCheck = [];
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
@@ -49,10 +59,6 @@ function placeShip(shipType, direction, x, y) {
 
   // place ship on the cells since all checks have been passed
   if (direction === "horizontal") {
-    if (x + shipLength > 10) {
-      throw new Error("Ship is too long for these coordinates");
-    }
-
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
@@ -61,9 +67,6 @@ function placeShip(shipType, direction, x, y) {
       });
     }
   } else if (direction === "vertical") {
-    if (y + shipLength > 10) {
-      throw new Error("Ship is too long for these coordinates");
-    }
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
@@ -75,7 +78,7 @@ function placeShip(shipType, direction, x, y) {
 }
 
 const gameboard = () => {
-  let board = [];
+  const board = [];
   let x = 1;
   let y = 1;
   while (x !== 10 && y <= 10) {
