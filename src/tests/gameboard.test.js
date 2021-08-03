@@ -5,7 +5,7 @@ test("Gameboard has a 10x10 board with 100 cells", () => {
   expect(boardTest.board.length).toBe(100);
 });
 
-test("Empty coords cell should have null shipType", () => {
+test("Empty coords cell should have null ship property", () => {
   let testBoard = gameboard();
   expect(testBoard.board[25].ship).toBeNull();
 });
