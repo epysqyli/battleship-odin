@@ -5,6 +5,11 @@ test("Gameboard has a 10x10 board with 100 cells", () => {
   expect(boardTest.board.length).toBe(100);
 });
 
+test("Empty coords cell should have null shipType", () => {
+  let testBoard = gameboard();
+  expect(testBoard.board[25].shipType).toBeNull();
+})
+
 describe("places the ships according to ship type and given coords", () => {
   test("places the carrier horizontally to take 5 cells", () => {
     let testBoard = gameboard();
