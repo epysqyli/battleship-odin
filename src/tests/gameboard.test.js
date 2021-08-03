@@ -7,36 +7,36 @@ test("Gameboard has a 10x10 board with 100 cells", () => {
 
 test("Empty coords cell should have null shipType", () => {
   let testBoard = gameboard();
-  expect(testBoard.board[25].shipType).toBeNull();
+  expect(testBoard.board[25].ship).toBeNull();
 });
 
 describe("places the ships according to ship type and given coords", () => {
   test("places the carrier horizontally to take 5 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("carrier", "horizontal", 3, 3);
-    expect(testBoard.getCoords(3, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(4, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(5, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(6, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(7, 3).shipType).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(4, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(5, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(6, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(7, 3).ship).not.toBeNull();
   });
 
   test("places the carrier vertically to take 5 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("carrier", "vertical", 3, 3);
-    expect(testBoard.getCoords(3, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 4).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 5).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 6).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 7).shipType).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 4).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 5).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 6).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 7).ship).not.toBeNull();
   });
 
   test("places the cruiser vertically to take 3 cells", () => {
     let testBoard = gameboard();
     testBoard.placeShip("cruiser", "vertical", 3, 3);
-    expect(testBoard.getCoords(3, 3).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 4).shipType).not.toBeNull();
-    expect(testBoard.getCoords(3, 5).shipType).not.toBeNull();
+    expect(testBoard.getCoords(3, 3).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 4).ship).not.toBeNull();
+    expect(testBoard.getCoords(3, 5).ship).not.toBeNull();
   });
 });
 

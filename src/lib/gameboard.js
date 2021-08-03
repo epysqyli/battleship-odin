@@ -27,7 +27,7 @@ function placeShip(shipType, direction, x, y) {
   const coords = this.board.find(
     (coords) => (coords.x === x) & (coords.y === y)
   );
-  if (coords.shipType) {
+  if (coords.ship) {
     throw new Error("Coordinates not free");
   }
 
@@ -42,7 +42,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
-          coords.shipType = ship[shipType];
+          coords.ship = ship[shipType];
         }
       });
     }
@@ -53,7 +53,7 @@ function placeShip(shipType, direction, x, y) {
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
-          coords.shipType = ship[shipType];
+          coords.ship = ship[shipType];
         }
       });
     }
@@ -70,7 +70,7 @@ const gameboard = () => {
       board.push({
         x,
         y,
-        shipType: null,
+        ship: null,
         miss: false,
         attack: false,
       });
