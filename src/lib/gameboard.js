@@ -8,7 +8,7 @@ const ships = [
   { destroyer: shipFactory("destroyer", 2, 2) },
 ];
 
-const gameboard = () => {
+const gameboard = (owner) => {
   const board = [];
   let x = 1;
   let y = 1;
@@ -125,7 +125,7 @@ const gameboard = () => {
     return shipCells.every((shipCell) => shipCell.ship.isSunk());
   }
 
-  return { board, getCoords, placeShip, receiveAttack, allSunk };
+  return { board, owner, getCoords, placeShip, receiveAttack, allSunk };
 };
 
 export default gameboard;
