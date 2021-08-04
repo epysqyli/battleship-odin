@@ -86,6 +86,7 @@ function receiveAttack(x, y) {
     if (coords.x === x && coords.y === y) {
       if (coords.ship) {
         coords.attack = true;
+        // implement hit function on the ship
       }
       else {
         coords.miss = true;

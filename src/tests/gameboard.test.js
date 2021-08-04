@@ -78,17 +78,25 @@ describe("Throws error on invalid coordinates", () => {
 
 describe("Each gameboard has a reiceive attack method that takes coords and:", () => {
   const testBoard = gameboard();
-  
+
   test("records the missed attack", () => {
     testBoard.receiveAttack(5, 5);
-    const attackedCell = testBoard.getCoords(5, 5);
-    expect(attackedCell.miss).toBeTruthy();
-  })
+    const hitCell = testBoard.getCoords(5, 5);
+    expect(hitCell.miss).toBeTruthy();
+  });
 
   test("records the successful attack on the board cell level", () => {
     testBoard.placeShip("submarine", "horizontal", 4, 5);
     testBoard.receiveAttack(5, 5);
-    const attackedCell = testBoard.getCoords(5, 5);
-    expect(attackedCell.attack).toBeTruthy();
-  })
-})
+    const hitCell = testBoard.getCoords(5, 5);
+    expect(hitCell.attack).toBeTruthy();
+  });
+
+  test("calls the hit function on the attacked ship", () => {
+    testBoard.placeShip("cruiser", "horizontal", 2, 2);
+    testBoard.receiveAttack(4, 2);
+    const hitCell = testBoard.getCoords(4, 2);
+    const hitShip = hitCell.ship;
+    expect(hitShip.hitRecord[2]).toEqual("hit");
+  });
+});
