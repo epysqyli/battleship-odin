@@ -60,6 +60,7 @@ function placeShip(shipType, direction, x, y) {
   // place ship on the cells since all checks have been passed
   if (direction === "horizontal") {
     ship[shipType].direction = "horizontal";
+    ship[shipType].start = { x, y };
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
@@ -69,6 +70,7 @@ function placeShip(shipType, direction, x, y) {
     }
   } else if (direction === "vertical") {
     ship[shipType].direction = "vertical";
+    ship[shipType].start = { x, y };
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {

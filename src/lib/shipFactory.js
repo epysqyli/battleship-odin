@@ -20,7 +20,17 @@ function isSunk() {
 
 const shipFactory = (name, length, quantity) => {
   const hitRecord = buildHitRecord(length);
-  return { name, length, quantity, hitRecord, sunk: false, hit, isSunk };
+  return {
+    name,
+    length,
+    direction: null,
+    start: null,
+    quantity,
+    hitRecord,
+    sunk: false,
+    hit,
+    isSunk,
+  };
 };
 
 export { buildHitRecord, shipFactory };
