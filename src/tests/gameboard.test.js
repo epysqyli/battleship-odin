@@ -111,6 +111,20 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
   });
 });
 
-test("gameboard reports whether all ships have been sunk", () => {
-  // to be implemented
-})
+describe("gameboard reports whether all ships have been sunk", () => {
+  test("returns false if not all ships are sunk", () => {
+    const testBoard = gameboard();
+    testBoard.placeShip("cruiser", "vertical", 4, 4);
+    testBoard.placeShip("submarine", "horizontal", 2, 3);
+    expect(testBoard.allSunk()).toBeFalsy();
+  });
+
+  test("returns true if all ships are sunk", () => {
+    const testBoard = gameboard();
+    testBoard.placeShip("submarine", "horizontal", 2, 3);
+    testBoard.receiveAttack(2, 3);
+    testBoard.receiveAttack(3, 3);
+    testBoard.receiveAttack(4, 3);
+    expect(testBoard.allSunk()).toBeTruthy();
+  });
+});

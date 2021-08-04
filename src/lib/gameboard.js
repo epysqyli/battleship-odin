@@ -26,6 +26,7 @@ const gameboard = () => {
     }
     y++;
   }
+
   const getCoords = (x, y) => {
     return board.find((item) => (item.x === x) & (item.y === y));
   };
@@ -118,7 +119,13 @@ const gameboard = () => {
       }
     });
   };
-  return { board, getCoords, placeShip, receiveAttack };
+
+  const allSunk = () => {
+    const shipCells = board.filter((cell) => cell.ship);
+    return shipCells.every((shipCell) => shipCell.ship.isSunk());
+  }
+
+  return { board, getCoords, placeShip, receiveAttack, allSunk };
 };
 
 export default gameboard;
