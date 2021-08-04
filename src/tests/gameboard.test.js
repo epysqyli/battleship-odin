@@ -84,4 +84,11 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
     const attackedCell = testBoard.getCoords(5, 5);
     expect(attackedCell.miss).toBeTruthy();
   })
+
+  test("records the successful attack on the board cell level", () => {
+    testBoard.placeShip("submarine", "horizontal", 4, 5);
+    testBoard.receiveAttack(5, 5);
+    const attackedCell = testBoard.getCoords(5, 5);
+    expect(attackedCell.attack).toBeTruthy();
+  })
 })
