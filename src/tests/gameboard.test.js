@@ -1,8 +1,8 @@
 import gameboard from "../lib/gameboard";
 
 test("Gameboard has a 10x10 board with 100 cells", () => {
-  const boardTest = gameboard();
-  expect(boardTest.board.length).toBe(100);
+  const testBoard = gameboard();
+  expect(testBoard.board.length).toBe(100);
 });
 
 test("Empty coords cell should have null ship property", () => {
@@ -75,3 +75,13 @@ describe("Throws error on invalid coordinates", () => {
     );
   });
 });
+
+describe("Each gameboard has a reiceive attack method that takes coords and:", () => {
+  const testBoard = gameboard();
+  
+  test("records the missed attack", () => {
+    testBoard.receiveAttack(5, 5);
+    const attackedCell = testBoard.getCoords(5, 5);
+    expect(attackedCell.miss).toBeTruthy();
+  })
+})
