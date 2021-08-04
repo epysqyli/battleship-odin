@@ -60,7 +60,7 @@ function placeShip(shipType, direction, x, y) {
   // place ship on the cells since all checks have been passed
   if (direction === "horizontal") {
     ship[shipType].direction = "horizontal";
-    ship[shipType].start = {x, y};
+    ship[shipType].start = { x, y };
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x + i && coords.y === y) {
@@ -70,7 +70,7 @@ function placeShip(shipType, direction, x, y) {
     }
   } else if (direction === "vertical") {
     ship[shipType].direction = "vertical";
-    ship[shipType].start = {x, y};
+    ship[shipType].start = { x, y };
     for (let i = 0; i < shipLength; i++) {
       this.board.forEach((coords) => {
         if (coords.x === x && coords.y === y + i) {
@@ -86,9 +86,15 @@ function receiveAttack(x, y) {
     if (coords.x === x && coords.y === y) {
       if (coords.ship) {
         coords.attack = true;
-        // implement hit function on the ship
-      }
-      else {
+        const ship = coords.ship;
+        if (ship.direction === "horizontal") {
+          const hitPosition = coords.x - ship.start.x;
+          ship.hit(hitPosition);
+        } else if (ship.direction === "vertical") {
+          const hitPosition = coords.x - ship.start.x;
+          ship.hit(hitPosition);
+        }
+      } else {
         coords.miss = true;
       }
     }
