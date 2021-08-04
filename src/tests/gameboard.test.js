@@ -110,3 +110,7 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
     expect(hitShip.hitRecord[1]).toEqual("hit");
   });
 });
+
+test("gameboard reports whether all ships have been sunk", () => {
+  // to be implemented
+})
