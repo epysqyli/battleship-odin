@@ -91,8 +91,9 @@ function receiveAttack(x, y) {
           const hitPosition = coords.x - ship.start.x;
           ship.hit(hitPosition);
         } else if (ship.direction === "vertical") {
-          const hitPosition = coords.x - ship.start.x;
+          const hitPosition = coords.y - ship.start.y;
           ship.hit(hitPosition);
+          console.log(ship.hitRecord);
         }
       } else {
         coords.miss = true;

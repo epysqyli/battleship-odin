@@ -103,10 +103,10 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
 
   test("calls the hit function on the attacked ship position vertically", () => {
     const testBoard = gameboard();
-    testBoard.placeShip("cruiser", "vertical", 2, 2);
-    testBoard.receiveAttack(2, 4);
-    const hitCell = testBoard.getCoords(2, 4);
+    testBoard.placeShip("submarine", "vertical", 6, 4);
+    testBoard.receiveAttack(6, 5);
+    const hitCell = testBoard.getCoords(6, 5);
     const hitShip = hitCell.ship;
-    expect(hitShip.hitRecord[2]).toEqual("hit");
+    expect(hitShip.hitRecord[1]).toEqual("hit");
   });
 });
