@@ -5,7 +5,7 @@ const Cell = (props) => {
   const cell = props.coords;
   return (
     <div className="cell">
-      {cell.x} - {cell.y}
+      {cell.x}x - {cell.y}y
     </div>
   );
 };
