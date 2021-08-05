@@ -4,14 +4,16 @@ import "../styles/gameboard.scss";
 
 const Gameboard = (props) => {
   const boardOwner = props.owner;
-  const board = props.owner.playerBoard.board;
-  board.sort((a, b) => a.y > b.y ? 1 : -1);
+  const boardOwnerName = boardOwner.playerBoard.owner;
+  const board = boardOwner.playerBoard.board;
+  board.sort((a, b) => (a.y > b.y ? 1 : -1));
+
   return (
     <div className="gameboard-container">
-      {boardOwner.playerBoard.owner} gameboard
+      <h2>{boardOwnerName} gameboard</h2>
       <div className="gameboard">
         {board.reverse().map((cell, index) => {
-          return <Cell coords={cell} key={index}></Cell>;
+          return <Cell coords={cell} owner={boardOwnerName} key={index}></Cell>;
         })}
       </div>
     </div>

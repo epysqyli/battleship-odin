@@ -1,3 +1,11 @@
+.gameboard-container {
+  h2 {
+    text-align: center;
+    padding-bottom: 2vh;
+    text-transform: uppercase;
+  }
+}
+
 .gameboard {
   display: flex;
   flex-wrap: wrap;

@@ -1,8 +1,6 @@
 import { React, useState, useEffect } from "react";
 import Gameboard from "./components/Gameboard";
-
 import createPlayer from "./lib/player";
-
 import "./styles/app.scss";
 
 const App = () => {
@@ -18,7 +16,6 @@ const App = () => {
     let newCpuState = { ...computer };
     newCpuState.placeShipsDefault();
     setComputer(newCpuState);
-
   };
 
   useEffect(() => {
@@ -27,6 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1>Odin BattleShip</h1>
       <div className="container">
         <Gameboard owner={player}></Gameboard>
         <Gameboard owner={computer}></Gameboard>
