@@ -10,4 +10,4 @@ test("sending attacks to the enemy gameboard changes the enemy's board state", (
   const jimmy = createPlayer("jimmy");
   bobby.attack(4, 5, jimmy.playerBoard);
   expect(jimmy.playerBoard.getCoords(4, 5).miss).toBeTruthy();
-})
+});

@@ -47,7 +47,7 @@ describe("places the ships according to ship type and given coords", () => {
   });
 });
 
-describe("Throws error on invalid coordinates", () => {
+describe("Throws error on invalid coordinates upon placing ships", () => {
   let testBoard = gameboard();
 
   test("if x or y are greater than 10", () => {
@@ -108,6 +108,14 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
     const hitCell = testBoard.getCoords(6, 5);
     const hitShip = hitCell.ship;
     expect(hitShip.hitRecord[1]).toEqual("hit");
+  });
+
+  test("throws and error if the cell has already been hit", () => {
+    const testBoard = gameboard();
+    testBoard.receiveAttack(4, 4);
+    expect(() => testBoard.receiveAttack(4, 4)).toThrow(
+      "Cell has already been hit"
+    );
   });
 });
 

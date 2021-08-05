@@ -101,6 +101,11 @@ const gameboard = (owner) => {
   };
 
   const receiveAttack = (x, y) => {
+    const cell = getCoords(x, y);
+    if (cell.miss || cell.attack) {
+      throw new Error("Cell has already been hit");
+    }
+    
     board.forEach((coords) => {
       if (coords.x === x && coords.y === y) {
         if (coords.ship) {
@@ -123,7 +128,7 @@ const gameboard = (owner) => {
   const allSunk = () => {
     const shipCells = board.filter((cell) => cell.ship);
     return shipCells.every((shipCell) => shipCell.ship.isSunk());
-  }
+  };
 
   return { board, owner, getCoords, placeShip, receiveAttack, allSunk };
 };
