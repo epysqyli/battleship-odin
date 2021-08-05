@@ -3,6 +3,16 @@ import gameboard from "./gameboard";
 const createPlayer = (playerName) => {
   const playerBoard = gameboard(playerName);
 
+  const placeShipsDefault = () => {
+    playerBoard.placeShip("carrier", "horizontal", 1, 1);
+    playerBoard.placeShip("battleship", "vertical", 1, 3);
+    playerBoard.placeShip("cruiser", "vertical", 4, 4);
+    playerBoard.placeShip("submarine", "horizontal", 7, 6);
+    playerBoard.placeShip("submarine", "horizontal", 2, 8);
+    playerBoard.placeShip("destroyer", "vertical", 7, 3);
+    playerBoard.placeShip("destroyer", "vertical", 5, 5);
+  }
+
   const attack = (x, y, enemyBoard) => {
     enemyBoard.receiveAttack(x, y);
   };
@@ -13,15 +23,15 @@ const createPlayer = (playerName) => {
     let y = Math.floor(Math.random() * 10) + 1;
 
     while (randomMoves.includes([x, y])) {
-      let x = Math.floor(Math.random() * 10) + 1;
-      let y = Math.floor(Math.random() * 10) + 1;
+      x = Math.floor(Math.random() * 10) + 1;
+      y = Math.floor(Math.random() * 10) + 1;
     }
 
     randomMoves.push([x, y]);
     enemyBoard.receiveAttack(x, y);
   };
 
-  return { playerBoard, attack, randomAttack, randomMoves };
+  return { playerBoard, attack, randomAttack, randomMoves, placeShipsDefault };
 };
 
 export default createPlayer;

@@ -130,17 +130,7 @@ const gameboard = (owner) => {
     return shipCells.every((shipCell) => shipCell.ship.isSunk());
   };
 
-  const placeShipsDefault = () => {
-    board.placeShip("carrier", "horizontal", 1, 1);
-    board.placeShip("battleship", "vertical", 1, 3);
-    board.placeShip("cruiser", "vertical", 4, 4);
-    board.placeShip("submarine", "horizontal", 2, 6);
-    board.placeShip("submarine", "horizontal", 3, 5);
-    board.placeShip("destroyer", "vertical", 7, 3);
-    board.placeShip("destroyer", "vertical", 7, 5);
-  }
-
-  return { board, owner, getCoords, placeShip, placeShipsDefault, receiveAttack, allSunk };
+  return { board, owner, getCoords, placeShip, receiveAttack, allSunk };
 };
 
 export default gameboard;
