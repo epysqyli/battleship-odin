@@ -5,6 +5,7 @@ import "../styles/gameboard.scss";
 const Gameboard = (props) => {
   const boardOwner = props.owner;
   const board = props.owner.playerBoard.board;
+  board.sort((a, b)=> a.y < b.y ? -1 : 1)
   return (
     <div className="gameboard-container">
       Gameboard of {boardOwner.playerBoard.owner}
