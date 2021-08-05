@@ -9,15 +9,20 @@ const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
 
-  const placeDefaultShips = (boardOwner) => {
-    let newPlayerBoard = boardOwner;
-    newPlayerBoard.placeShipsDefault();
-    setPlayer(newPlayerBoard);
+  const placeDefaultShips = (human, cpu) => {
+    // player
+    let newHumanState = { ...player };
+    newHumanState.placeShipsDefault();
+    setPlayer(newHumanState);
+    // computer
+    let newCpuState = { ...computer };
+    newCpuState.placeShipsDefault();
+    setComputer(newCpuState);
+
   };
 
   useEffect(() => {
-    placeDefaultShips(player);
-    placeDefaultShips(computer);
+    placeDefaultShips(player, computer);
   }, []);
 
   return (
