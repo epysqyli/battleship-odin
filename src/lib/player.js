@@ -5,7 +5,7 @@ const createPlayer = (playerName) => {
 
   const placeShipsDefault = () => {
     playerBoard.placeShip("carrier", "horizontal", 1, 1);
-    playerBoard.placeShip("battleship", "vertical", 1, 3);
+    playerBoard.placeShip("battleship", "vertical", 2, 3);
     playerBoard.placeShip("cruiser", "vertical", 4, 4);
     playerBoard.placeShip("submarine", "horizontal", 7, 6);
     playerBoard.placeShip("submarine", "horizontal", 2, 8);
