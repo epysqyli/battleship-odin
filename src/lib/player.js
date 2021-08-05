@@ -17,6 +17,7 @@ const createPlayer = (playerName) => {
       let y = Math.floor(Math.random() * 10) + 1;
     }
 
+    randomMoves.push([x, y]);
     enemyBoard.receiveAttack(x, y);
   };
   return { playerBoard, attack, randomAttack };
