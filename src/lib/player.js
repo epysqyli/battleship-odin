@@ -13,12 +13,12 @@ const createPlayer = (playerName) => {
     playerBoard.placeShip("destroyer", "vertical", 5, 5);
   }
 
-  const attack = (x, y, enemyBoard) => {
-    enemyBoard.receiveAttack(x, y);
+  const attack = (x, y, enemy) => {
+    enemy.playerBoard.receiveAttack(x, y);
   };
 
   let randomMoves = [];
-  const randomAttack = (enemyBoard) => {
+  const randomAttack = (enemy) => {
     let x = Math.floor(Math.random() * 10) + 1;
     let y = Math.floor(Math.random() * 10) + 1;
 
@@ -28,7 +28,7 @@ const createPlayer = (playerName) => {
     }
 
     randomMoves.push([x, y]);
-    enemyBoard.receiveAttack(x, y);
+    enemy.playerBoard.receiveAttack(x, y);
   };
 
   return { playerBoard, attack, randomAttack, randomMoves, placeShipsDefault };
