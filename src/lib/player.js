@@ -11,7 +11,7 @@ const createPlayer = (playerName) => {
     playerBoard.placeShip("submarine", "horizontal", 2, 8);
     playerBoard.placeShip("destroyer", "vertical", 7, 3);
     playerBoard.placeShip("destroyer", "vertical", 5, 5);
-  }
+  };
 
   const attack = (x, y, enemy) => {
     enemy.playerBoard.receiveAttack(x, y);

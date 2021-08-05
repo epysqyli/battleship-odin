@@ -1,6 +1,6 @@
 import createPlayer from "./player";
 
-// create the game loop
+// create the game loop --> different implementation due to react
 
 const gameLoop = () => {
   const player = createPlayer("player");
