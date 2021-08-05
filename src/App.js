@@ -10,8 +10,10 @@ const App = () => {
   const [computer, setComputer] = useState(createPlayer("computer"));
   return (
     <div className="App">
-      <Gameboard owner={player}></Gameboard>
-      <Gameboard owner={computer}></Gameboard>
+      <div className="container">
+        <Gameboard owner={player}></Gameboard>
+        <Gameboard owner={computer}></Gameboard>
+      </div>
     </div>
   );
 };
