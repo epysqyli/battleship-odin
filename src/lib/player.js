@@ -2,7 +2,7 @@ import gameboard from "./gameboard";
 
 const createPlayer = (playerName) => {
   const playerBoard = gameboard(playerName);
-  
+
   const attack = (x, y, enemyBoard) => {
     enemyBoard.receiveAttack(x, y);
   };
@@ -20,7 +20,8 @@ const createPlayer = (playerName) => {
     randomMoves.push([x, y]);
     enemyBoard.receiveAttack(x, y);
   };
-  return { playerBoard, attack, randomAttack };
+
+  return { playerBoard, attack, randomAttack, randomMoves };
 };
 
 export default createPlayer;
