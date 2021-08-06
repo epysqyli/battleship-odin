@@ -69,7 +69,7 @@ const App = () => {
         <h1>Odin BattleShip</h1>
         <div className="container">
           <Gameboard owner={player} getCellInfo={getCell}></Gameboard>
-          <Ships chooseShip={onShipClick} />
+          <Ships owner={player} chooseShip={onShipClick} />
         </div>
       </div>
     );
