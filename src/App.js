@@ -9,14 +9,9 @@ const App = () => {
   const [computer, setComputer] = useState(createPlayer("computer"));
   const [playerShipPlaced, setPlayerShipPlaced] = useState(false);
   const [currentShip, setCurrentShip] = useState();
-  const [chosenCell, setChosenCell] = useState({x: null, y: null});
+  const [chosenCell, setChosenCell] = useState({ x: null, y: null });
 
-  const placeDefaultShips = (human, cpu) => {
-    // // player
-    // let newHumanState = { ...player };
-    // newHumanState.placeShipsDefault();
-    // setPlayer(newHumanState);
-
+  const placeDefaultShips = () => {
     // computer
     let newCpuState = { ...computer };
     newCpuState.placeShipsDefault();
@@ -29,17 +24,26 @@ const App = () => {
 
   const getCell = (cell) => {
     console.log(cell);
-  }
+    setChosenCell({ x: cell.x, y: cell.y });
+  };
 
   const placeShip = (shipName, direction, x, y) => {
-    let newPlayerBoard = { ...player };
-    newPlayerBoard.placeShip(shipName, direction, x, y);
-    setPlayer(newPlayerBoard);
+    let newPlayerState = { ...player };
+    newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
+    setPlayer(newPlayerState);
+    setCurrentShip(null)
+    setChosenCell(null);
   };
 
   useEffect(() => {
-    placeDefaultShips(computer);
+    placeDefaultShips();
   }, []);
+
+  useEffect(() => {
+    if (currentShip && chosenCell) {
+      placeShip(currentShip.name, "horizontal", chosenCell.x, chosenCell.y);
+    }
+  }, [chosenCell]);
 
   if (playerShipPlaced) {
     return (

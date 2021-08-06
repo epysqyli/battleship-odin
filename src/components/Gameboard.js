@@ -6,7 +6,7 @@ const Gameboard = (props) => {
   const boardOwner = props.owner;
   const boardOwnerName = boardOwner.playerBoard.owner;
   const board = boardOwner.playerBoard.board;
-  const getCell = props.getCellInfo;
+  const getCellInfo = props.getCellInfo;
   board.sort((a, b) => (a.y > b.y ? 1 : -1));
 
   return (
@@ -18,7 +18,7 @@ const Gameboard = (props) => {
             <Cell
               coords={cell}
               owner={boardOwnerName}
-              onCellClicked={() => getCell(cell)}
+              onCellClicked={() => getCellInfo(cell)}
               key={index}
             ></Cell>
           );
