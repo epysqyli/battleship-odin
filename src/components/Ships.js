@@ -3,17 +3,27 @@ import { shipFactory } from "../lib/shipFactory";
 import "../styles/ships.scss";
 
 const Ships = (props) => {
+  // const [ships] = useState([
+  //   shipFactory("carrier", 5),
+  //   shipFactory("battleship", 4),
+  //   shipFactory("cruiser", 3),
+  //   shipFactory("submarine", 3),
+  //   shipFactory("submarine", 3),
+  //   shipFactory("destroyer", 2),
+  //   shipFactory("destroyer", 2),
+  // ]);
+
   const [ships] = useState([
-    shipFactory("carrier", 5),
-    shipFactory("battleship", 4),
-    shipFactory("cruiser", 3),
-    shipFactory("submarine", 3),
-    shipFactory("submarine", 3),
-    shipFactory("destroyer", 2),
-    shipFactory("destroyer", 2),
+    {unit: shipFactory("carrier", 5), active: false},
+    {unit: shipFactory("battleship", 4), active: false},
+    {unit: shipFactory("cruiser", 3), active: false},
+    {unit: shipFactory("submarine", 3), active: false},
+    {unit: shipFactory("submarine", 3), active: false},
+    {unit: shipFactory("destroyer", 2), active: false},
+    {unit: shipFactory("destroyer", 2), active: false},
   ]);
 
-  const chooseShip = props.chooseShip;
+  const chooseShip = props.chooseShip;  
 
   return (
     <div className="ships-placement">
@@ -22,10 +32,14 @@ const Ships = (props) => {
       <div className="ships">
         {ships.map((ship, index) => {
           return (
-            <div className="ship-container" onClick={() => chooseShip(ship)} key={index}>
-              <div className="ship-name">{ship.name}</div>
+            <div
+              className="ship-container"
+              onClick={() => chooseShip(ship.unit)}
+              key={index}
+            >
+              <div className="ship-name">{ship.unit.name}</div>
               <div className="unit-container">
-                {[...Array(ship.length)].map((el, index) => {
+                {[...Array(ship.unit.length)].map((el, index) => {
                   return <div className="unit-cell" key={index}></div>;
                 })}
               </div>
