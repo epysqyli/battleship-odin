@@ -33,11 +33,11 @@ const gameboard = (owner) => {
 
     //  general coordinates validity check based on ship length
     if (direction === "horizontal") {
-      if (x + shipLength > 10) {
+      if (x + shipLength - 1 > 10) {
         throw new Error("Ship does not fit on the board");
       }
     } else if (direction === "vertical") {
-      if (y + shipLength > 10) {
+      if (y + shipLength - 1 > 10) {
         throw new Error("Ship does not fit on the board");
       }
     }

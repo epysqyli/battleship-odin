@@ -9,13 +9,13 @@ const Cell = (props) => {
   if (cell.ship) {
     return (
       <div className="cell ship">
-        {cell.x}x {cell.y}y
+        {/* {cell.x}x {cell.y}y */}
       </div>
     );
   } else {
     return (
       <div className="cell" onClick={onCellClicked}>
-        {cell.x}x {cell.y}y
+        {/* {cell.x}x {cell.y}y */}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { shipFactory } from "../lib/shipFactory";
 import "../styles/ships.scss";
 
 const Ships = (props) => {
-  const [ships, setShips] = useState([
+  const [ships] = useState([
     shipFactory("carrier", 5),
     shipFactory("battleship", 4),
     shipFactory("cruiser", 3),
