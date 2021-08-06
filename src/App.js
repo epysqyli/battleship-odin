@@ -10,6 +10,7 @@ const App = () => {
   const [playerShipPlaced, setPlayerShipPlaced] = useState(false);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
+  const [shipAmount, setShipAmount] = useState(0);
 
   const placeDefaultShips = () => {
     // computer
@@ -31,8 +32,15 @@ const App = () => {
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
     setPlayer(newPlayerState);
-    setCurrentShip(null)
+    // reset currentShip and chosenCell state
+    setCurrentShip(null);
     setChosenCell(null);
+    let newShipAmount = shipAmount;
+    newShipAmount++;
+    setShipAmount(newShipAmount);
+    if (newShipAmount === 7) {
+      setPlayerShipPlaced(true);
+    }
   };
 
   useEffect(() => {
