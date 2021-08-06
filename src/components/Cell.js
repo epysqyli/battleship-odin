@@ -7,17 +7,9 @@ const Cell = (props) => {
   // const owner = props.owner;
 
   if (cell.ship) {
-    return (
-      <div className="cell ship">
-        {/* {cell.x}x {cell.y}y */}
-      </div>
-    );
+    return <div className="cell ship"></div>;
   } else {
-    return (
-      <div className="cell" onClick={onCellClicked}>
-        {/* {cell.x}x {cell.y}y */}
-      </div>
-    );
+    return <div className="cell" onClick={onCellClicked}></div>;
   }
 };
 

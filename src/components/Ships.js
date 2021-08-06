@@ -12,16 +12,7 @@ const Ships = (props) => {
     { unit: shipFactory("destroyer", 2), active: false },
     { unit: shipFactory("destroyer", 2), active: false },
   ]);
-  const [shipToRemoveIndex, setShipToRemoveIndex] = useState(undefined);
-
   const chooseShip = props.chooseShip;
-  const board = props.owner.playerBoard.board;
-
-  const removeShip = (shipIndex) => {
-    let newShips = [...ships];
-    newShips.splice(shipIndex, 1);
-    setShips(newShips);
-  };
 
   return (
     <div className="ships-placement">
@@ -40,8 +31,6 @@ const Ships = (props) => {
                   unit: shipFactory(ship.unit.name, ship.unit.length),
                   active: true,
                 };
-                // set index of ship to be removed
-                setShipToRemoveIndex(index);
                 setShips(newShips);
                 chooseShip(ship.unit);
               }}
