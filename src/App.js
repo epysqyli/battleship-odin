@@ -7,7 +7,9 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipPlaced, setPlayerShipPlaced] = useState(true);
+  const [playerShipPlaced, setPlayerShipPlaced] = useState(false);
+  const [currentShip, setCurrentShip] = useState();
+  const [chosenCell, setChosenCell] = useState({x: null, y: null});
 
   const placeDefaultShips = (human, cpu) => {
     // // player
@@ -22,8 +24,18 @@ const App = () => {
   };
 
   const onShipClick = (selectedShip) => {
-    console.log(selectedShip);
+    setCurrentShip(selectedShip);
+  };
+
+  const getCell = (cell) => {
+    console.log(cell);
   }
+
+  const placeShip = (shipName, direction, x, y) => {
+    let newPlayerBoard = { ...player };
+    newPlayerBoard.placeShip(shipName, direction, x, y);
+    setPlayer(newPlayerBoard);
+  };
 
   useEffect(() => {
     placeDefaultShips(computer);
@@ -44,8 +56,8 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard owner={player}></Gameboard>
-          <Ships chooseShip={onShipClick}/>
+          <Gameboard owner={player} getCellInfo={getCell}></Gameboard>
+          <Ships chooseShip={onShipClick} />
         </div>
       </div>
     );
