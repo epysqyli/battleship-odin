@@ -10,4 +10,21 @@
   p {
     text-align: center;
   }
+
+  .ship-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .ship-name {
+      color: darkgreen;
+    }
+
+    .unit-cell {
+      height: 50px;
+      width: 50px;
+      border: 1px solid black;
+    }
+  }
+
 }
