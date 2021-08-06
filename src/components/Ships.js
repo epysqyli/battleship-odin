@@ -13,17 +13,17 @@ const Ships = (props) => {
   //   shipFactory("destroyer", 2),
   // ]);
 
-  const [ships] = useState([
-    {unit: shipFactory("carrier", 5), active: false},
-    {unit: shipFactory("battleship", 4), active: false},
-    {unit: shipFactory("cruiser", 3), active: false},
-    {unit: shipFactory("submarine", 3), active: false},
-    {unit: shipFactory("submarine", 3), active: false},
-    {unit: shipFactory("destroyer", 2), active: false},
-    {unit: shipFactory("destroyer", 2), active: false},
+  const [ships, setShips] = useState([
+    { unit: shipFactory("carrier", 5), active: false },
+    { unit: shipFactory("battleship", 4), active: false },
+    { unit: shipFactory("cruiser", 3), active: false },
+    { unit: shipFactory("submarine", 3), active: false },
+    { unit: shipFactory("submarine", 3), active: false },
+    { unit: shipFactory("destroyer", 2), active: false },
+    { unit: shipFactory("destroyer", 2), active: false },
   ]);
 
-  const chooseShip = props.chooseShip;  
+  const chooseShip = props.chooseShip;
 
   return (
     <div className="ships-placement">
@@ -33,8 +33,18 @@ const Ships = (props) => {
         {ships.map((ship, index) => {
           return (
             <div
-              className="ship-container"
-              onClick={() => chooseShip(ship.unit)}
+              className={
+                ship.active ? "ship-container selected-ship" : "ship-container"
+              }
+              onClick={() => {
+                let newShips = [...ships];
+                newShips[index] = {
+                  unit: shipFactory(ship.unit.name, ship.unit.length),
+                  active: true,
+                };
+                setShips(newShips);
+                chooseShip(ship.unit);
+              }}
               key={index}
             >
               <div className="ship-name">{ship.unit.name}</div>
