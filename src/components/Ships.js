@@ -2,24 +2,34 @@ import { React, useState } from "react";
 import { shipFactory } from "../lib/shipFactory";
 import "../styles/ships.scss";
 
-const ships = [
-  shipFactory("carrier", 5),
-  shipFactory("battleship", 4),
-  shipFactory("cruiser", 3),
-  shipFactory("submarine", 3),
-  shipFactory("submarine", 3),
-  shipFactory("carrier", 2),
-  shipFactory("carrier", 2),
-];
-
 const Ships = () => {
-  // const [shipsList, setShipsList] = useState();
+  const [ships, setShips] = useState([
+    shipFactory("carrier", 5),
+    shipFactory("battleship", 4),
+    shipFactory("cruiser", 3),
+    shipFactory("submarine", 3),
+    shipFactory("submarine", 3),
+    shipFactory("destroyer", 2),
+    shipFactory("destroyer", 2),
+  ]);
+
   return (
     <div className="ships-placement">
       <h2>place your ships on the board</h2>
       <p>Click on the ship first and then on the desired cell</p>
       <div className="ships">
-        {/* find a way to display ships efficiently */}
+        {ships.map((ship, index) => {
+          return (
+            <div className="ship-container" key={index}>
+              <div className="ship-name">{ship.name}</div>
+              <div className="unit-container">
+                {[...Array(ship.length)].map((el, index) => {
+                  return <div className="unit-cell" key={index}></div>;
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

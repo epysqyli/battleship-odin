@@ -1,5 +1,4 @@
 .ships-placement {
-  width: 650px;
 
   h2 {
     text-align: center;
@@ -13,18 +12,25 @@
 
   .ship-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: 2vh auto;
 
     .ship-name {
       color: darkgreen;
+      text-transform: uppercase;
     }
 
-    .unit-cell {
-      height: 50px;
-      width: 50px;
-      border: 1px solid black;
+    .unit-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .unit-cell {
+        height: 50px;
+        width: 50px;
+        border: 1px solid black;
+      }
     }
   }
-
 }
