@@ -7,7 +7,7 @@ const buildHitRecord = (shipLength) => {
   return hitRecord;
 };
 
-const shipFactory = (name, length, quantity) => {
+const shipFactory = (name, length) => {
   const hitRecord = buildHitRecord(length);
 
   const hit = (pos) => {
@@ -26,7 +26,6 @@ const shipFactory = (name, length, quantity) => {
     length,
     direction: null,
     start: null,
-    quantity,
     hitRecord,
     sunk: false,
     hit,

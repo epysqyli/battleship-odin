@@ -1,7 +1,19 @@
-import React from "react";
+import { React, useState } from "react";
+import { shipFactory } from "../lib/shipFactory";
 import "../styles/ships.scss";
 
+const ships = [
+  shipFactory("carrier", 5),
+  shipFactory("battleship", 4),
+  shipFactory("cruiser", 3),
+  shipFactory("submarine", 3),
+  shipFactory("submarine", 3),
+  shipFactory("carrier", 2),
+  shipFactory("carrier", 2),
+];
+
 const Ships = () => {
+  // const [shipsList, setShipsList] = useState();
   return (
     <div className="ships-placement">
       <h2>place your ships on the board</h2>

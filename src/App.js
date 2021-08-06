@@ -14,7 +14,7 @@ const App = () => {
     // let newHumanState = { ...player };
     // newHumanState.placeShipsDefault();
     // setPlayer(newHumanState);
-    
+
     // computer
     let newCpuState = { ...computer };
     newCpuState.placeShipsDefault();
@@ -22,19 +22,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    placeDefaultShips(player, computer);
+    placeDefaultShips(computer);
   }, []);
 
   if (playerShipPlaced) {
-  return (
-    <div className="App">
-      <h1>Odin BattleShip</h1>
-      <div className="container">
-        <Gameboard owner={player}></Gameboard>
-        <Gameboard owner={computer}></Gameboard>
+    return (
+      <div className="App">
+        <h1>Odin BattleShip</h1>
+        <div className="container">
+          <Gameboard owner={player}></Gameboard>
+          <Gameboard owner={computer}></Gameboard>
+        </div>
       </div>
-    </div>
-  );
+    );
   } else {
     return (
       <div className="App">

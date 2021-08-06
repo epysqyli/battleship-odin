@@ -4,13 +4,13 @@ const createPlayer = (playerName) => {
   const playerBoard = gameboard(playerName);
 
   const placeShipsDefault = () => {
-    playerBoard.placeShip("carrier", "horizontal", 1, 1);
-    playerBoard.placeShip("battleship", "vertical", 2, 3);
-    playerBoard.placeShip("cruiser", "vertical", 4, 4);
-    playerBoard.placeShip("submarine", "horizontal", 7, 6);
-    playerBoard.placeShip("submarine", "horizontal", 2, 8);
-    playerBoard.placeShip("destroyer", "vertical", 7, 3);
-    playerBoard.placeShip("destroyer", "vertical", 5, 5);
+    playerBoard.placeShip("carrier", "horizontal", 1);
+    playerBoard.placeShip("battleship", "vertical", 2);
+    playerBoard.placeShip("cruiser", "vertical", 4);
+    playerBoard.placeShip("submarine", "horizontal", 7);
+    playerBoard.placeShip("submarine", "horizontal", 2);
+    playerBoard.placeShip("destroyer", "vertical", 7);
+    playerBoard.placeShip("destroyer", "vertical", 5);
   };
 
   const attack = (x, y, enemy) => {
