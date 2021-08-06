@@ -7,7 +7,7 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipPlaced, setPlayerShipPlaced] = useState(false);
+  const [playerShipPlaced, setPlayerShipPlaced] = useState(true);
 
   const placeDefaultShips = (human, cpu) => {
     // // player
