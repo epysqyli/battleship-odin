@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { shipFactory } from "../lib/shipFactory";
 import "../styles/ships.scss";
 
-const Ships = () => {
+const Ships = (props) => {
   const [ships, setShips] = useState([
     shipFactory("carrier", 5),
     shipFactory("battleship", 4),
@@ -13,6 +13,8 @@ const Ships = () => {
     shipFactory("destroyer", 2),
   ]);
 
+  const chooseShip = props.chooseShip;
+
   return (
     <div className="ships-placement">
       <h2>place your ships on the board</h2>
@@ -20,7 +22,7 @@ const Ships = () => {
       <div className="ships">
         {ships.map((ship, index) => {
           return (
-            <div className="ship-container" key={index}>
+            <div className="ship-container" onClick={() => chooseShip(ship)} key={index}>
               <div className="ship-name">{ship.name}</div>
               <div className="unit-container">
                 {[...Array(ship.length)].map((el, index) => {

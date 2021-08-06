@@ -21,6 +21,10 @@ const App = () => {
     setComputer(newCpuState);
   };
 
+  const onShipClick = (selectedShip) => {
+    console.log(selectedShip);
+  }
+
   useEffect(() => {
     placeDefaultShips(computer);
   }, []);
@@ -41,7 +45,7 @@ const App = () => {
         <h1>Odin BattleShip</h1>
         <div className="container">
           <Gameboard owner={player}></Gameboard>
-          <Ships />
+          <Ships chooseShip={onShipClick}/>
         </div>
       </div>
     );
