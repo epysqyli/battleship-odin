@@ -8,7 +8,10 @@ const Cell = (props) => {
 
   if (cell.ship) {
     return (
-      <div className={clickable ? "cell ship" : "cell ship clickable"}></div>
+      <div
+        className={clickable ? "cell ship" : "cell ship clickable"}
+        onClick={onCellClicked}
+      ></div>
     );
   } else {
     return (

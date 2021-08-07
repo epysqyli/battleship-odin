@@ -39,6 +39,16 @@ const App = () => {
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
+  const attackComputer = (cell) => {
+    player.attack(cell.x, cell.y, computer);
+    console.log(cell);
+  };
+
+  const attackPlayer = (cell) => {
+    computer.randomAttack(player);
+    console.log(cell);
+  };
+
   const placeShip = (shipName, direction, x, y) => {
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
@@ -73,8 +83,8 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard owner={player}></Gameboard>
-          <Gameboard owner={computer}></Gameboard>
+          <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
+          <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
         </div>
       </div>
     );
