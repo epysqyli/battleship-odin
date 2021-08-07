@@ -38,6 +38,7 @@
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
+        transition: background-color 150ms;
 
         &:first-child {
           border-left: 1px solid black;
@@ -49,6 +50,10 @@
 
 .selected-ship {
   box-shadow: 0 0 4px 2px black;
+
+  .unit-cell {
+    background-color: red;
+  }
 }
 
 .hide {
