@@ -63,7 +63,7 @@ const App = () => {
     let newShipAmount = shipAmount;
     newShipAmount++;
     setShipAmount(newShipAmount);
-    if (newShipAmount === 7) {
+    if (newShipAmount === 5) {
       setPlayerShipsPlaced(true);
     }
   };

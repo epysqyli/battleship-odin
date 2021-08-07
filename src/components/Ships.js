@@ -8,8 +8,6 @@ const Ships = (props) => {
     { unit: shipFactory("battleship", 4), active: false, placed: false },
     { unit: shipFactory("cruiser", 3), active: false, placed: false },
     { unit: shipFactory("submarine", 3), active: false, placed: false },
-    { unit: shipFactory("submarine", 3), active: false, placed: false },
-    { unit: shipFactory("destroyer", 2), active: false, placed: false },
     { unit: shipFactory("destroyer", 2), active: false, placed: false },
   ]);
   const chooseShip = props.chooseShip;
