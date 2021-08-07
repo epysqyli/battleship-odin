@@ -11,6 +11,7 @@ const App = () => {
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
+  const [shipPlaced, setShipPlaced] = useState([false, 0]);
 
   const placeDefaultShips = () => {
     // computer
@@ -19,8 +20,9 @@ const App = () => {
     setComputer(newCpuState);
   };
 
-  const onShipClick = (selectedShip) => {
+  const onShipClick = (selectedShip, i) => {
     setCurrentShip(selectedShip);
+    setShipPlaced([false, i]);
   };
 
   const getCell = (cell) => {
@@ -32,6 +34,9 @@ const App = () => {
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
     setPlayer(newPlayerState);
+    let newShipPlaced = shipPlaced;
+    newShipPlaced = [true, shipPlaced[1]];
+    setShipPlaced(newShipPlaced);
     // reset currentShip and chosenCell state
     setCurrentShip(null);
     setChosenCell(null);
@@ -69,7 +74,11 @@ const App = () => {
         <h1>Odin BattleShip</h1>
         <div className="container">
           <Gameboard owner={player} getCellInfo={getCell}></Gameboard>
-          <Ships owner={player} chooseShip={onShipClick} />
+          <Ships
+            owner={player}
+            chooseShip={onShipClick}
+            hideShip={shipPlaced[0] ? shipPlaced : null}
+          />
         </div>
       </div>
     );
