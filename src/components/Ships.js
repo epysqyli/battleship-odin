@@ -31,32 +31,36 @@ const Ships = (props) => {
       <p>Click on the ship first and then on the desired cell</p>
       <div className="ships">
         {ships.map((ship, index) => {
-          return (
-            <div
-              className={
-                ship.active ? "ship-container selected-ship" : "ship-container"
-              }
-              onClick={() => {
-                let newShips = [...ships];
-                newShips[index] = {
-                  unit: shipFactory(ship.unit.name, ship.unit.length),
-                  active: true,
-                };
-                setShips(newShips);
-                chooseShip(ship.unit, index);
-              }}
-              key={index}
-            >
-              <div className="ship-name">
-                {ship.placed ? "" : ship.unit.name}
+          if (ship.placed) {
+            return null;
+          } else {
+            return (
+              <div
+                className={
+                  ship.active
+                    ? "ship-container selected-ship"
+                    : "ship-container"
+                }
+                onClick={() => {
+                  let newShips = [...ships];
+                  newShips[index] = {
+                    unit: shipFactory(ship.unit.name, ship.unit.length),
+                    active: true,
+                  };
+                  setShips(newShips);
+                  chooseShip(ship.unit, index);
+                }}
+                key={index}
+              >
+                <div className="ship-name">{ship.unit.name}</div>
+                <div className="unit-container">
+                  {[...Array(ship.unit.length)].map((el, index) => {
+                    return <div className="unit-cell" key={index}></div>;
+                  })}
+                </div>
               </div>
-              <div className="unit-container">
-                {[...Array(ship.unit.length)].map((el, index) => {
-                  return <div className="unit-cell" key={index}></div>;
-                })}
-              </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
     </div>
