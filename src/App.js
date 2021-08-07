@@ -7,7 +7,7 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipPlaced, setPlayerShipPlaced] = useState(false);
+  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(false);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
@@ -45,7 +45,7 @@ const App = () => {
     newShipAmount++;
     setShipAmount(newShipAmount);
     if (newShipAmount === 7) {
-      setPlayerShipPlaced(true);
+      setPlayerShipsPlaced(true);
     }
   };
 
@@ -59,7 +59,7 @@ const App = () => {
     }
   }, [chosenCell]);
 
-  if (playerShipPlaced) {
+  if (playerShipsPlaced) {
     return (
       <div className="App">
         <h1>Odin BattleShip</h1>
@@ -74,7 +74,11 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard owner={player} getCellInfo={getCell}></Gameboard>
+          <Gameboard
+            owner={player}
+            clickable={shipPlaced[0]}
+            getCellInfo={getCell}
+          ></Gameboard>
           <Ships
             owner={player}
             chooseShip={onShipClick}
