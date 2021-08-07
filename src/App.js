@@ -98,14 +98,17 @@ const App = () => {
             clickable={shipPlaced[0]}
             getCellInfo={getCell}
           ></Gameboard>
-          <div className="direction-change" onClick={changeDirection}>
-            {shipDirection === "horizontal" ? "h" : "v"}
+
+          <div className="ships-component">
+            <Ships
+              owner={player}
+              chooseShip={onShipClick}
+              hideShip={shipPlaced[0] ? shipPlaced : null}
+            />
+            <div className="direction-change" onClick={changeDirection}>
+              {shipDirection === "horizontal" ? "h" : "v"}
+            </div>
           </div>
-          <Ships
-            owner={player}
-            chooseShip={onShipClick}
-            hideShip={shipPlaced[0] ? shipPlaced : null}
-          />
         </div>
       </div>
     );

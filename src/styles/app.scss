@@ -29,7 +29,15 @@ h1 {
   max-width: 1500px;
 }
 
+.ships-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .direction-change {
+  width: 50%;
+  text-align: center;
   align-self: center;
   text-transform: uppercase;
   font-size: 2rem;
