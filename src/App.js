@@ -34,6 +34,7 @@ const App = () => {
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
     setPlayer(newPlayerState);
+    // update shipPlaced state
     let newShipPlaced = shipPlaced;
     newShipPlaced = [true, shipPlaced[1]];
     setShipPlaced(newShipPlaced);

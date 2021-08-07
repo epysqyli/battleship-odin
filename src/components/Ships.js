@@ -43,6 +43,9 @@ const Ships = (props) => {
                 }
                 onClick={() => {
                   let newShips = [...ships];
+                  newShips.map((ship) => (ship.active = false));
+                  setShips(newShips);
+                  newShips = [...ships];
                   newShips[index] = {
                     unit: shipFactory(ship.unit.name, ship.unit.length),
                     active: true,
