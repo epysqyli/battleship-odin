@@ -28,3 +28,21 @@ h1 {
   margin: auto;
   max-width: 1500px;
 }
+
+.direction-change {
+  align-self: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  border: 2px solid black;
+  padding: 15px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: whitesmoke;
+  }
+
+  &:active {
+    border: 2px solid whitesmoke;
+  }
+}

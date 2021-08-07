@@ -12,6 +12,15 @@ const App = () => {
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
+  const [shipDirection, setShipDirection] = useState("horizontal");
+
+  const changeDirection = () => {
+    if (shipDirection === "horizontal") {
+      setShipDirection("vertical");
+    } else {
+      setShipDirection("horizontal");
+    }
+  };
 
   const placeDefaultShips = () => {
     // computer
@@ -55,7 +64,7 @@ const App = () => {
 
   useEffect(() => {
     if (currentShip && chosenCell) {
-      placeShip(currentShip.name, "horizontal", chosenCell.x, chosenCell.y);
+      placeShip(currentShip.name, shipDirection, chosenCell.x, chosenCell.y);
     }
   }, [chosenCell]);
 
@@ -79,6 +88,9 @@ const App = () => {
             clickable={shipPlaced[0]}
             getCellInfo={getCell}
           ></Gameboard>
+          <div className="direction-change" onClick={changeDirection}>
+            {shipDirection === "horizontal" ? "h" : "v"}
+          </div>
           <Ships
             owner={player}
             chooseShip={onShipClick}
@@ -91,9 +103,3 @@ const App = () => {
 };
 
 export default App;
-
-// game loop
-// hit start
-// manually place player ships
-// random placement for computer ships
-// alternate between player and computer until allSunks
