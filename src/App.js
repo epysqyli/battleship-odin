@@ -16,6 +16,7 @@ const App = () => {
   // const [gameOver, setGameOver] = useState(false);
   const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMoved, setPlayerMoved] = useState(false);
+  const [hitStreak, setHitStreak] = useState(false);
 
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
@@ -44,6 +45,11 @@ const App = () => {
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
+    if (cell.ship) {
+      // develop the idea
+      setHitStreak(true);
+      return;
+    }
     setPlayerMoved(true);
     setTurnMessage("computer's turn");
   };
