@@ -1,4 +1,4 @@
-import ships from "./ships";
+import { playerShips, computerShips } from "./ships";
 
 const gameboard = (owner) => {
   const board = [];
@@ -28,65 +28,127 @@ const gameboard = (owner) => {
       throw new Error("Either x or y are not valid coordinates");
     }
 
-    const ship = ships.find((ship) => ship[shipType]);
-    let shipLength = ship[shipType].length;
+    if (owner === "player") {
+      const ship = playerShips.find((ship) => ship[shipType]);
+      let shipLength = ship[shipType].length;
+      //  general coordinates validity check based on ship length
+      if (direction === "horizontal") {
+        if (x + shipLength - 1 > 10) {
+          throw new Error("Ship does not fit on the board");
+        }
+      } else if (direction === "vertical") {
+        if (y + shipLength - 1 > 10) {
+          throw new Error("Ship does not fit on the board");
+        }
+      }
 
-    //  general coordinates validity check based on ship length
-    if (direction === "horizontal") {
-      if (x + shipLength - 1 > 10) {
-        throw new Error("Ship does not fit on the board");
+      if (direction === "horizontal") {
+        let coordsToCheck = [];
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x + i && coords.y === y) {
+              coordsToCheck.push(coords);
+            }
+          });
+        }
+        if (coordsToCheck.some((coords) => coords.ship)) {
+          throw new Error("Path is not free");
+        }
+      } else if (direction === "vertical") {
+        let coordsToCheck = [];
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x && coords.y === y + 1) {
+              coordsToCheck.push(coords);
+            }
+          });
+        }
+        if (coordsToCheck.some((coords) => coords.ship)) {
+          throw new Error("Path is not free");
+        }
       }
-    } else if (direction === "vertical") {
-      if (y + shipLength - 1 > 10) {
-        throw new Error("Ship does not fit on the board");
-      }
-    }
 
-    if (direction === "horizontal") {
-      let coordsToCheck = [];
-      for (let i = 0; i < shipLength; i++) {
-        board.forEach((coords) => {
-          if (coords.x === x + i && coords.y === y) {
-            coordsToCheck.push(coords);
-          }
-        });
+      // place ship on the cells since all checks have been passed
+      ship[shipType].start = { x: x, y: y };
+      if (direction === "horizontal") {
+        ship[shipType].direction = "horizontal";
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x + i && coords.y === y) {
+              coords.ship = ship[shipType];
+            }
+          });
+        }
+      } else if (direction === "vertical") {
+        ship[shipType].direction = "vertical";
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x && coords.y === y + i) {
+              coords.ship = ship[shipType];
+            }
+          });
+        }
       }
-      if (coordsToCheck.some((coords) => coords.ship)) {
-        throw new Error("Path is not free");
+    } else if (owner === "computer") {
+      const ship = computerShips.find((ship) => ship[shipType]);
+      let shipLength = ship[shipType].length;
+      //  general coordinates validity check based on ship length
+      if (direction === "horizontal") {
+        if (x + shipLength - 1 > 10) {
+          throw new Error("Ship does not fit on the board");
+        }
+      } else if (direction === "vertical") {
+        if (y + shipLength - 1 > 10) {
+          throw new Error("Ship does not fit on the board");
+        }
       }
-    } else if (direction === "vertical") {
-      let coordsToCheck = [];
-      for (let i = 0; i < shipLength; i++) {
-        board.forEach((coords) => {
-          if (coords.x === x && coords.y === y + 1) {
-            coordsToCheck.push(coords);
-          }
-        });
-      }
-      if (coordsToCheck.some((coords) => coords.ship)) {
-        throw new Error("Path is not free");
-      }
-    }
 
-    // place ship on the cells since all checks have been passed
-    ship[shipType].start = { x: x, y: y };
-    if (direction === "horizontal") {
-      ship[shipType].direction = "horizontal";
-      for (let i = 0; i < shipLength; i++) {
-        board.forEach((coords) => {
-          if (coords.x === x + i && coords.y === y) {
-            coords.ship = ship[shipType];
-          }
-        });
+      if (direction === "horizontal") {
+        let coordsToCheck = [];
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x + i && coords.y === y) {
+              coordsToCheck.push(coords);
+            }
+          });
+        }
+        if (coordsToCheck.some((coords) => coords.ship)) {
+          throw new Error("Path is not free");
+        }
+      } else if (direction === "vertical") {
+        let coordsToCheck = [];
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x && coords.y === y + 1) {
+              coordsToCheck.push(coords);
+            }
+          });
+        }
+        if (coordsToCheck.some((coords) => coords.ship)) {
+          throw new Error("Path is not free");
+        }
       }
-    } else if (direction === "vertical") {
-      ship[shipType].direction = "vertical";
-      for (let i = 0; i < shipLength; i++) {
-        board.forEach((coords) => {
-          if (coords.x === x && coords.y === y + i) {
-            coords.ship = ship[shipType];
-          }
-        });
+
+      // place ship on the cells since all checks have been passed
+      ship[shipType].start = { x: x, y: y };
+      if (direction === "horizontal") {
+        ship[shipType].direction = "horizontal";
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x + i && coords.y === y) {
+              coords.ship = ship[shipType];
+            }
+          });
+        }
+      } else if (direction === "vertical") {
+        ship[shipType].direction = "vertical";
+        for (let i = 0; i < shipLength; i++) {
+          board.forEach((coords) => {
+            if (coords.x === x && coords.y === y + i) {
+              coords.ship = ship[shipType];
+            }
+          });
+        }
       }
     }
   };
