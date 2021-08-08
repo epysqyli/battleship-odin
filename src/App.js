@@ -13,7 +13,6 @@ const App = () => {
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
   const [shipDirection, setShipDirection] = useState("horizontal");
-  // const [gameOver, setGameOver] = useState(false);
   const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMoved, setPlayerMoved] = useState(false);
   const [hitStreak, setHitStreak] = useState(false);
@@ -109,7 +108,7 @@ const App = () => {
         <div className="container">
           <Gameboard
             owner={player}
-            firstStage={playerShipsPlaced}
+            firstStageOver={playerShipsPlaced}
             getCellInfo={attackPlayer}
           ></Gameboard>
           <Gameboard

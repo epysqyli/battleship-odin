@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import React from "react";
 import Cell from "./Cell";
 import "../styles/gameboard.scss";
 
