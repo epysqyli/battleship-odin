@@ -27,6 +27,7 @@ const createPlayer = (playerName) => {
 
     randomMoves.push([x, y]);
     enemy.playerBoard.receiveAttack(x, y);
+    console.log(x, y);
   };
 
   return { playerBoard, attack, randomAttack, randomMoves, placeShipsDefault };

@@ -51,7 +51,7 @@ const App = () => {
   const attackPlayer = () => {
     setTurnMessage("player's turn");
     computer.randomAttack(player);
-    console.log("player randomly attacked");
+    console.log("player was randomly attacked");
   };
 
   const placeShip = (shipName, direction, x, y) => {
