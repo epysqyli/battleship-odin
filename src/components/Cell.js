@@ -11,14 +11,14 @@ const Cell = (props) => {
       <div
         className={clickable ? "cell ship" : "cell ship clickable"}
         onClick={onCellClicked}
-      ></div>
+      >{cell.x} {cell.y}</div>
     );
   } else {
     return (
       <div
         className={clickable ? "cell" : "cell clickable"}
         onClick={onCellClicked}
-      ></div>
+      >{cell.x} {cell.y}</div>
     );
   }
 };

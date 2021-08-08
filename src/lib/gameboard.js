@@ -69,9 +69,9 @@ const gameboard = (owner) => {
     }
 
     // place ship on the cells since all checks have been passed
+    ship[shipType].start = { x: x, y: y };
     if (direction === "horizontal") {
       ship[shipType].direction = "horizontal";
-      ship[shipType].start = { x, y };
       for (let i = 0; i < shipLength; i++) {
         board.forEach((coords) => {
           if (coords.x === x + i && coords.y === y) {
@@ -81,7 +81,6 @@ const gameboard = (owner) => {
       }
     } else if (direction === "vertical") {
       ship[shipType].direction = "vertical";
-      ship[shipType].start = { x, y };
       for (let i = 0; i < shipLength; i++) {
         board.forEach((coords) => {
           if (coords.x === x && coords.y === y + i) {

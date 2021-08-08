@@ -23,10 +23,9 @@ const App = () => {
   };
 
   const placeDefaultShips = () => {
-    // computer
-    let newCpuState = { ...computer };
-    newCpuState.placeShipsDefault();
-    setComputer(newCpuState);
+    let newComputer = { ...computer };
+    newComputer.placeShipsDefault();
+    setComputer(newComputer);
   };
 
   const onShipClick = (selectedShip, i) => {
@@ -39,6 +38,7 @@ const App = () => {
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
+  // second board is being overlapped by the first --> check state
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
@@ -83,8 +83,14 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
-          <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
+          <Gameboard
+            owner={player}
+            getCellInfo={attackPlayer}
+          ></Gameboard>
+          <Gameboard
+            owner={computer}
+            getCellInfo={attackComputer}
+          ></Gameboard>
         </div>
       </div>
     );
