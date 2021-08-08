@@ -13,7 +13,6 @@ const App = () => {
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
   const [shipDirection, setShipDirection] = useState("horizontal");
-  // const [gameOver, setGameOver] = useState(false);
   const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMoved, setPlayerMoved] = useState(false);
   const [hitStreak, setHitStreak] = useState(false);
@@ -46,12 +45,14 @@ const App = () => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
     if (cell.ship) {
-      // develop the idea
       setHitStreak(true);
-      return;
+      setPlayerMoved(true);
+      setTurnMessage("player's turn");
+    } else {
+      setPlayerMoved(true);
+      setHitStreak(false);
+      setTurnMessage("computer's turn");
     }
-    setPlayerMoved(true);
-    setTurnMessage("computer's turn");
   };
 
   const attackPlayer = () => {
@@ -96,7 +97,8 @@ const App = () => {
   }, [chosenCell]);
 
   useEffect(() => {
-    if (playerShipsPlaced && playerMoved) setTimeout(attackPlayer, 1000);
+    if (playerShipsPlaced && playerMoved && !hitStreak)
+      setTimeout(attackPlayer, 1000);
   }, [playerMoved]);
 
   if (playerShipsPlaced) {
@@ -106,12 +108,12 @@ const App = () => {
         <div className="container">
           <Gameboard
             owner={player}
-            firstStage={playerShipsPlaced}
+            firstStageOver={playerShipsPlaced}
             getCellInfo={attackPlayer}
           ></Gameboard>
           <Gameboard
             owner={computer}
-            firstStage={playerShipsPlaced}
+            firstStageOver={playerShipsPlaced}
             getCellInfo={attackComputer}
           ></Gameboard>
         </div>
