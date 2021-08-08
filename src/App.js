@@ -7,7 +7,7 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(true);
+  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(false);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
