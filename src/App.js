@@ -7,12 +7,16 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(false);
+  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(true);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
   const [shipDirection, setShipDirection] = useState("horizontal");
+  const [gameStarted, setGameStarted] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [turnMessage, setTurnMessage] = useState("");
+  const [playerMove, setPlayerMove] = useState(false);
 
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
@@ -38,18 +42,24 @@ const App = () => {
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
-  // second board is being overlapped by the first --> check start coords of each placed ship
   const attackComputer = (cell) => {
-    // player.attack(cell.x, cell.y, computer);
+    player.attack(cell.x, cell.y, computer);
     console.log(cell);
+    setPlayerMove(true);
   };
 
-  const attackPlayer = (cell) => {
-    // computer.randomAttack(player);
-    console.log(cell);
+  const attackPlayer = () => {
+    computer.randomAttack(player);
+    console.log("player randomly attacked");
+  };
+
+  const startGame = () => {
+    setGameStarted(true);
+    setTurnMessage("player's turn");
   };
 
   const placeShip = (shipName, direction, x, y) => {
+    // update player board state
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
     setPlayer(newPlayerState);
@@ -62,6 +72,8 @@ const App = () => {
     // reset currentShip and chosenCell state
     setCurrentShip(null);
     setChosenCell(null);
+
+    // update shipAmount
     let newShipAmount = shipAmount;
     newShipAmount++;
     setShipAmount(newShipAmount);
@@ -80,6 +92,11 @@ const App = () => {
     }
   }, [chosenCell]);
 
+  useEffect(() => {
+    if (playerMove) attackPlayer();
+    setPlayerMove(false);
+  }, [playerMove]);
+
   if (playerShipsPlaced) {
     return (
       <div className="App">
@@ -87,6 +104,9 @@ const App = () => {
         <div className="container">
           <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
           <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
+        </div>
+        <div className="game-start" onClick={() => startGame()}>
+          {gameStarted ? turnMessage : "play"}
         </div>
       </div>
     );
@@ -108,7 +128,7 @@ const App = () => {
               hideShip={shipPlaced[0] ? shipPlaced : null}
             />
             <div className="direction-change" onClick={changeDirection}>
-              {shipDirection === "horizontal" ? "h" : "v"}
+              {shipDirection === "horizontal" ? "horizontal" : "vertical"}
             </div>
           </div>
         </div>

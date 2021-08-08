@@ -36,7 +36,7 @@ h1 {
 }
 
 .direction-change {
-  width: 50%;
+  width: fit-content;
   text-align: center;
   align-self: center;
   text-transform: uppercase;
@@ -45,6 +45,25 @@ h1 {
   padding: 15px 20px;
   border-radius: 15px;
   cursor: pointer;
+
+  &:hover {
+    background-color: whitesmoke;
+  }
+
+  &:active {
+    border: 2px solid whitesmoke;
+  }
+}
+
+.game-start {
+  width: fit-content;
+  margin: 5vh auto 0;
+  border: 2px solid black;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 2vh 5vw;
+  font-size: 1.5rem;
 
   &:hover {
     background-color: whitesmoke;
