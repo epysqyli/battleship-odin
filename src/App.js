@@ -46,12 +46,14 @@ const App = () => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
     if (cell.ship) {
-      // develop the idea
       setHitStreak(true);
-      return;
+      setPlayerMoved(true);
+      setTurnMessage("player's turn");
+    } else {
+      setPlayerMoved(true);
+      setHitStreak(false);
+      setTurnMessage("computer's turn");
     }
-    setPlayerMoved(true);
-    setTurnMessage("computer's turn");
   };
 
   const attackPlayer = () => {
@@ -96,7 +98,8 @@ const App = () => {
   }, [chosenCell]);
 
   useEffect(() => {
-    if (playerShipsPlaced && playerMoved) setTimeout(attackPlayer, 1000);
+    if (playerShipsPlaced && playerMoved && !hitStreak)
+      setTimeout(attackPlayer, 1000);
   }, [playerMoved]);
 
   if (playerShipsPlaced) {
@@ -111,7 +114,7 @@ const App = () => {
           ></Gameboard>
           <Gameboard
             owner={computer}
-            firstStage={playerShipsPlaced}
+            firstStageOver={playerShipsPlaced}
             getCellInfo={attackComputer}
           ></Gameboard>
         </div>

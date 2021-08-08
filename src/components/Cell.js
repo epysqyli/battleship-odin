@@ -5,25 +5,9 @@ const Cell = (props) => {
   const cell = props.coords;
   const onCellClicked = props.onCellClicked;
   const clickable = props.clickable;
-  const firstStage = props.firstStage;
+  const firstStageOver = props.firstStageOver;
 
-  if (!firstStage) {
-    if (cell.ship) {
-      return (
-        <div
-          className={clickable ? "cell ship" : "cell ship clickable"}
-          onClick={onCellClicked}
-        ></div>
-      );
-    } else {
-      return (
-        <div
-          className={clickable ? "cell" : "cell clickable"}
-          onClick={onCellClicked}
-        ></div>
-      );
-    }
-  } else {
+  if (firstStageOver) {
     if (cell.ship) {
       return (
         <div
@@ -35,6 +19,22 @@ const Cell = (props) => {
       return (
         <div
           className={cell.miss ? "cell miss" : "cell clickable"}
+          onClick={onCellClicked}
+        ></div>
+      );
+    }
+  } else {
+    if (cell.ship) {
+      return (
+        <div
+          className={clickable ? "cell ship" : "cell ship clickable"}
+          onClick={onCellClicked}
+        ></div>
+      );
+    } else {
+      return (
+        <div
+          className={clickable ? "cell" : "cell clickable"}
           onClick={onCellClicked}
         ></div>
       );
