@@ -38,14 +38,14 @@ const App = () => {
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
-  // second board is being overlapped by the first --> check state
+  // second board is being overlapped by the first --> check start coords of each placed ship
   const attackComputer = (cell) => {
-    player.attack(cell.x, cell.y, computer);
+    // player.attack(cell.x, cell.y, computer);
     console.log(cell);
   };
 
   const attackPlayer = (cell) => {
-    computer.randomAttack(player);
+    // computer.randomAttack(player);
     console.log(cell);
   };
 
@@ -53,10 +53,12 @@ const App = () => {
     let newPlayerState = { ...player };
     newPlayerState.playerBoard.placeShip(shipName, direction, x, y);
     setPlayer(newPlayerState);
+
     // update shipPlaced state
     let newShipPlaced = shipPlaced;
     newShipPlaced = [true, shipPlaced[1]];
     setShipPlaced(newShipPlaced);
+
     // reset currentShip and chosenCell state
     setCurrentShip(null);
     setChosenCell(null);
@@ -69,10 +71,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    placeDefaultShips();
-  }, []);
-
-  useEffect(() => {
     if (currentShip && chosenCell) {
       placeShip(currentShip.name, shipDirection, chosenCell.x, chosenCell.y);
     }
@@ -83,12 +81,10 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard
-            owner={player}
-            getCellInfo={attackPlayer}
-          ></Gameboard>
+          <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
           <Gameboard
             owner={computer}
+            placeDefault={placeDefaultShips}
             getCellInfo={attackComputer}
           ></Gameboard>
         </div>

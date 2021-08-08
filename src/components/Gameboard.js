@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Cell from "./Cell";
 import "../styles/gameboard.scss";
 
@@ -9,6 +9,13 @@ const Gameboard = (props) => {
   const getCellInfo = props.getCellInfo;
   const clickable = props.clickable;
   board.sort((a, b) => (a.y > b.y ? 1 : -1));
+
+  useEffect(() => {
+    const placeDefault = props.placeDefault;
+    if (boardOwnerName === "computer") {
+      placeDefault();
+    }
+  }, [])
 
   return (
     <div className="gameboard-container">
