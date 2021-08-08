@@ -8,6 +8,7 @@ const Gameboard = (props) => {
   const board = boardOwner.playerBoard.board;
   const getCellInfo = props.getCellInfo;
   const clickable = props.clickable;
+  const firstStage = props.firstStage;
   board.sort((a, b) => (a.y > b.y ? 1 : -1));
 
   return (
@@ -20,6 +21,7 @@ const Gameboard = (props) => {
               coords={cell}
               owner={boardOwnerName}
               clickable={clickable}
+              firstStage={firstStage}
               onCellClicked={() => getCellInfo(cell)}
               key={index}
             ></Cell>

@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import Gameboard from "./components/Gameboard";
 import Ships from "./components/Ships";
 import createPlayer from "./lib/player";
+import { playerShips } from "./lib/ships";
 import "./styles/app.scss";
 
 const App = () => {
@@ -90,7 +91,7 @@ const App = () => {
 
   useEffect(() => {
     if (playerMove) {
-      setTimeout(attackPlayer, 1000);
+      setTimeout(attackPlayer, 1500);
     }
     setPlayerMove(false);
   }, [playerMove]);
@@ -100,8 +101,16 @@ const App = () => {
       <div className="App">
         <h1>Odin BattleShip</h1>
         <div className="container">
-          <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
-          <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
+          <Gameboard
+            owner={player}
+            firstStage={playerShipsPlaced}
+            getCellInfo={attackPlayer}
+          ></Gameboard>
+          <Gameboard
+            owner={computer}
+            firstStage={playerShipsPlaced}
+            getCellInfo={attackComputer}
+          ></Gameboard>
         </div>
         <div className="game-start">{turnMessage}</div>
       </div>
@@ -114,6 +123,7 @@ const App = () => {
           <Gameboard
             owner={player}
             clickable={shipPlaced[0]}
+            firstStage={playerShipsPlaced}
             getCellInfo={getCell}
           ></Gameboard>
 

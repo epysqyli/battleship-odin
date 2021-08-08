@@ -5,21 +5,40 @@ const Cell = (props) => {
   const cell = props.coords;
   const onCellClicked = props.onCellClicked;
   const clickable = props.clickable;
+  const firstStage = props.firstStage;
 
-  if (cell.ship) {
-    return (
-      <div
-        className={clickable ? "cell ship" : "cell ship clickable"}
-        onClick={onCellClicked}
-      ></div>
-    );
+  if (!firstStage) {
+    if (cell.ship) {
+      return (
+        <div
+          className={clickable ? "cell ship" : "cell ship clickable"}
+          onClick={onCellClicked}
+        >a</div>
+      );
+    } else {
+      return (
+        <div
+          className={clickable ? "cell" : "cell clickable"}
+          onClick={onCellClicked}
+        ></div>
+      );
+    }
   } else {
-    return (
-      <div
-        className={clickable ? "cell" : "cell clickable"}
-        onClick={onCellClicked}
-      ></div>
-    );
+    if (cell.ship) {
+      return (
+        <div
+          className={cell.attack ? "cell hit" : "cell clickable"}
+          onClick={onCellClicked}
+        ></div>
+      );
+    } else {
+      return (
+        <div
+          className={cell.miss ? "cell miss" : "cell clickable"}
+          onClick={onCellClicked}
+        ></div>
+      );
+    }
   }
 };
 
