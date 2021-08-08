@@ -13,9 +13,8 @@ const App = () => {
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
   const [shipDirection, setShipDirection] = useState("horizontal");
-  const [gameStarted, setGameStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [turnMessage, setTurnMessage] = useState("");
+  const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMove, setPlayerMove] = useState(false);
 
   const changeDirection = () => {
@@ -46,16 +45,13 @@ const App = () => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
     setPlayerMove(true);
+    setTurnMessage("computer's turn");
   };
 
   const attackPlayer = () => {
+    setTurnMessage("player's turn");
     computer.randomAttack(player);
     console.log("player randomly attacked");
-  };
-
-  const startGame = () => {
-    setGameStarted(true);
-    setTurnMessage("player's turn");
   };
 
   const placeShip = (shipName, direction, x, y) => {
@@ -93,7 +89,9 @@ const App = () => {
   }, [chosenCell]);
 
   useEffect(() => {
-    if (playerMove) attackPlayer();
+    if (playerMove) {
+      setTimeout(attackPlayer, 1000);
+    }
     setPlayerMove(false);
   }, [playerMove]);
 
@@ -105,9 +103,7 @@ const App = () => {
           <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
           <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
         </div>
-        <div className="game-start" onClick={() => startGame()}>
-          {gameStarted ? turnMessage : "play"}
-        </div>
+        <div className="game-start">{turnMessage}</div>
       </div>
     );
   } else {

@@ -61,15 +61,6 @@ h1 {
   border: 2px solid black;
   text-align: center;
   text-transform: uppercase;
-  cursor: pointer;
   padding: 2vh 5vw;
   font-size: 1.5rem;
-
-  &:hover {
-    background-color: whitesmoke;
-  }
-
-  &:active {
-    border: 2px solid whitesmoke;
-  }
 }
