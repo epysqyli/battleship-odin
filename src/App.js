@@ -2,21 +2,20 @@ import { React, useState, useEffect } from "react";
 import Gameboard from "./components/Gameboard";
 import Ships from "./components/Ships";
 import createPlayer from "./lib/player";
-import { playerShips } from "./lib/ships";
 import "./styles/app.scss";
 
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(false);
+  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(true);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
   const [shipPlaced, setShipPlaced] = useState([false, 0]);
   const [shipDirection, setShipDirection] = useState("horizontal");
-  const [gameOver, setGameOver] = useState(false);
+  // const [gameOver, setGameOver] = useState(false);
   const [turnMessage, setTurnMessage] = useState("player's turn");
-  const [playerMove, setPlayerMove] = useState(false);
+  const [playerMoved, setPlayerMoved] = useState(false);
 
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
@@ -45,13 +44,14 @@ const App = () => {
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
     console.log(cell);
-    setPlayerMove(true);
+    setPlayerMoved(true);
     setTurnMessage("computer's turn");
   };
 
   const attackPlayer = () => {
     setTurnMessage("player's turn");
     computer.randomAttack(player);
+    setPlayerMoved(false);
     console.log("player was randomly attacked");
   };
 
@@ -90,11 +90,8 @@ const App = () => {
   }, [chosenCell]);
 
   useEffect(() => {
-    if (playerMove) {
-      setTimeout(attackPlayer, 1500);
-    }
-    setPlayerMove(false);
-  }, [playerMove]);
+    if (playerShipsPlaced && playerMoved) setTimeout(attackPlayer, 1000);
+  }, [playerMoved]);
 
   if (playerShipsPlaced) {
     return (
