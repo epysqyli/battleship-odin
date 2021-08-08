@@ -10,13 +10,6 @@ const Gameboard = (props) => {
   const clickable = props.clickable;
   board.sort((a, b) => (a.y > b.y ? 1 : -1));
 
-  useEffect(() => {
-    const placeDefault = props.placeDefault;
-    if (boardOwnerName === "computer") {
-      placeDefault();
-    }
-  }, [])
-
   return (
     <div className="gameboard-container">
       <h2>{boardOwnerName} gameboard</h2>

@@ -71,6 +71,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    placeDefaultShips();
+  }, []);
+
+  useEffect(() => {
     if (currentShip && chosenCell) {
       placeShip(currentShip.name, shipDirection, chosenCell.x, chosenCell.y);
     }
@@ -82,11 +86,7 @@ const App = () => {
         <h1>Odin BattleShip</h1>
         <div className="container">
           <Gameboard owner={player} getCellInfo={attackPlayer}></Gameboard>
-          <Gameboard
-            owner={computer}
-            placeDefault={placeDefaultShips}
-            getCellInfo={attackComputer}
-          ></Gameboard>
+          <Gameboard owner={computer} getCellInfo={attackComputer}></Gameboard>
         </div>
       </div>
     );
