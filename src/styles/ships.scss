@@ -14,9 +14,9 @@
     justify-content: space-between;
     align-items: center;
     margin: 2vh auto;
-    border: 1px solid darkgreen;
-    background-color: whitesmoke;
     padding: 5px 10px;
+    background-color: teal;
+    color: white;
     cursor: pointer;
     transition: box-shadow 200ms;
 
@@ -40,6 +40,7 @@
         border-bottom: 1px solid black;
         border-right: 1px solid black;
         transition: background-color 150ms;
+        background-color: white;
 
         &:first-child {
           border-left: 1px solid black;

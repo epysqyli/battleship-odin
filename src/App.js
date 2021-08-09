@@ -76,8 +76,10 @@ const App = () => {
     computer.randomAttack(player, randomCell.x, randomCell.y);
     if (randomCell.ship) {
       setComputerStreak(true);
+      setComputerMoved(false);
     } else {
       setComputerStreak(false);
+      setComputerMoved(true);
     }
     setTurnMessage("player's turn");
     setComputerMoved(true);
@@ -126,8 +128,12 @@ const App = () => {
   }, [hitStreak, playerMoved]);
 
   useEffect(() => {
-    if (computerStreak) attackPlayer();
-  }, [computerStreak]);
+    if (computerStreak && computerMoved) setTimeout(attackPlayer, 1000);
+  }, [computerStreak, computerMoved]);
+
+  useEffect(() => {
+    if (computerStreak) setComputerMoved(true);
+  }, [computerStreak, computerMoved]);
 
   useEffect(() => {
     if (shipAmount === 5) setEnoughShips(true);
