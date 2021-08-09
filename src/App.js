@@ -80,9 +80,8 @@ const App = () => {
     } else {
       setComputerStreak(false);
       setComputerMoved(true);
+      setTurnMessage("player's turn");
     }
-    setTurnMessage("player's turn");
-    setComputerMoved(true);
     setPlayerMoved(false);
   };
 
@@ -129,7 +128,7 @@ const App = () => {
   }, [hitStreak, playerMoved]);
   // end of player streak logic
 
-  // manages streak logic for computer player
+  // manages streak logic for computer
   useEffect(() => {
     if (computerStreak && computerMoved) setTimeout(attackPlayer, 1000);
   }, [computerStreak, computerMoved]);
