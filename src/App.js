@@ -44,6 +44,14 @@ const App = () => {
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
+  const generateRndCell = () => {
+    const rndCell = computer.chooseRandomCell(player);
+    setRandomCell(rndCell);
+    let newRandomCells = [...randomCells];
+    newRandomCells.push(rndCell);
+    setRandomCells(newRandomCells);
+  };
+
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
     if (cell.ship) {
@@ -55,21 +63,12 @@ const App = () => {
       setPlayerMoved(true);
       setTurnMessage("computer's turn");
     }
-    // set random cell used by computer player
-    const rndCell = computer.chooseRandomCell(player);
-    setRandomCell(rndCell);
   };
 
   const attackPlayer = () => {
+    generateRndCell();
+    computer.randomAttack(player, randomCell.x, randomCell.y);
     setTurnMessage("player's turn");
-    if (!randomCells.includes(randomCell)) {
-      computer.randomAttack(player, randomCell.x, randomCell.y);
-      let newRandomCells = [...randomCells];
-      newRandomCells.push(randomCell);
-      setRandomCells(newRandomCells);
-    } else {
-      attackPlayer();
-    }
     setPlayerMoved(false);
   };
 
@@ -96,6 +95,7 @@ const App = () => {
 
   useEffect(() => {
     placeDefaultShips();
+    generateRndCell();
   }, []);
 
   useEffect(() => {

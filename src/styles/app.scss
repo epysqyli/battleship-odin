@@ -6,7 +6,7 @@
 
 .App {
   min-height: 100vh;
-  background-color: rgba(0, 50, 40, 0.25);
+  background-color: rgba(0, 50, 40, 0.30);
 }
 
 h1 {
@@ -57,11 +57,12 @@ h1 {
 .turns-info {
   width: fit-content;
   margin: 5vh auto 0;
-  border: 2px solid black;
   text-align: center;
   text-transform: uppercase;
   padding: 2vh 5vw;
   font-size: 1.5rem;
+  background-color: rgba(0, 50, 40, 0.25);
+  color: white;
 }
 
 .game-start {
