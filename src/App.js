@@ -118,6 +118,7 @@ const App = () => {
     }
   }, [chosenCell]);
 
+  // manages streak logic for player
   useEffect(() => {
     if (playerShipsPlaced && playerMoved && !hitStreak)
       setTimeout(attackPlayer, 1000);
@@ -126,7 +127,9 @@ const App = () => {
   useEffect(() => {
     if (hitStreak) setPlayerMoved(true);
   }, [hitStreak, playerMoved]);
+  // end of player streak logic
 
+  // manages streak logic for computer player
   useEffect(() => {
     if (computerStreak && computerMoved) setTimeout(attackPlayer, 1000);
   }, [computerStreak, computerMoved]);
@@ -134,6 +137,7 @@ const App = () => {
   useEffect(() => {
     if (computerStreak) setComputerMoved(true);
   }, [computerStreak, computerMoved]);
+  // end of computer streak logic 
 
   useEffect(() => {
     if (shipAmount === 5) setEnoughShips(true);
