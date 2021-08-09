@@ -15,22 +15,24 @@ const createPlayer = (playerName) => {
     enemy.playerBoard.receiveAttack(x, y);
   };
 
-  let randomMoves = [];
-  const randomAttack = (enemy) => {
+  const chooseRandomCell = (enemy) => {
     let x = Math.floor(Math.random() * 10) + 1;
     let y = Math.floor(Math.random() * 10) + 1;
-
-    while (randomMoves.includes([x, y])) {
-      x = Math.floor(Math.random() * 10) + 1;
-      y = Math.floor(Math.random() * 10) + 1;
-    }
-
-    randomMoves.push([x, y]);
-    enemy.playerBoard.receiveAttack(x, y);
-    console.log(x, y);
+    const cell = enemy.playerBoard.getCoords(x, y);
+    return cell;
   };
 
-  return { playerBoard, attack, randomAttack, randomMoves, placeShipsDefault };
+  const randomAttack = (enemy, x, y) => {
+    enemy.playerBoard.receiveAttack(x, y);
+  };
+
+  return {
+    playerBoard,
+    attack,
+    chooseRandomCell,
+    randomAttack,
+    placeShipsDefault,
+  };
 };
 
 export default createPlayer;

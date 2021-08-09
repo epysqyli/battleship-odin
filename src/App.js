@@ -17,6 +17,8 @@ const App = () => {
   const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMoved, setPlayerMoved] = useState(false);
   const [hitStreak, setHitStreak] = useState(false);
+  const [randomCell, setRandomCell] = useState(null);
+  const [randomCells, setRandomCells] = useState([]);
 
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
@@ -53,11 +55,21 @@ const App = () => {
       setPlayerMoved(true);
       setTurnMessage("computer's turn");
     }
+    // set random cell used by computer player
+    const rndCell = computer.chooseRandomCell(player);
+    setRandomCell(rndCell);
   };
 
   const attackPlayer = () => {
     setTurnMessage("player's turn");
-    computer.randomAttack(player);
+    if (!randomCells.includes(randomCell)) {
+      computer.randomAttack(player, randomCell.x, randomCell.y);
+      let newRandomCells = [...randomCells];
+      newRandomCells.push(randomCell);
+      setRandomCells(newRandomCells);
+    } else {
+      attackPlayer();
+    }
     setPlayerMoved(false);
   };
 
