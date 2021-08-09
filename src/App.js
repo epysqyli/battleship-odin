@@ -43,7 +43,6 @@ const App = () => {
 
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
-    console.log(cell);
     if (cell.ship) {
       setHitStreak(true);
       setPlayerMoved(false);
@@ -99,11 +98,11 @@ const App = () => {
   useEffect(() => {
     if (playerShipsPlaced && playerMoved && !hitStreak)
       setTimeout(attackPlayer, 1000);
-  }, [playerMoved]);
+  }, [hitStreak, playerMoved]);
 
-  // useEffect(() => {
-  //   setPlayerMoved(false);
-  // }, [hitStreak]);
+  useEffect(() => {
+    if (hitStreak) setPlayerMoved(true);
+  }, [hitStreak, playerMoved]);
 
   if (playerShipsPlaced) {
     return (
