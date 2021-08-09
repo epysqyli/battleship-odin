@@ -46,11 +46,11 @@ const App = () => {
     console.log(cell);
     if (cell.ship) {
       setHitStreak(true);
-      setPlayerMoved(true);
+      setPlayerMoved(false);
       setTurnMessage("player's turn");
     } else {
-      setPlayerMoved(true);
       setHitStreak(false);
+      setPlayerMoved(true);
       setTurnMessage("computer's turn");
     }
   };
@@ -100,6 +100,10 @@ const App = () => {
     if (playerShipsPlaced && playerMoved && !hitStreak)
       setTimeout(attackPlayer, 1000);
   }, [playerMoved]);
+
+  // useEffect(() => {
+  //   setPlayerMoved(false);
+  // }, [hitStreak]);
 
   if (playerShipsPlaced) {
     return (
