@@ -17,6 +17,8 @@ const App = () => {
   const [turnMessage, setTurnMessage] = useState("player's turn");
   const [playerMoved, setPlayerMoved] = useState(false);
   const [hitStreak, setHitStreak] = useState(false);
+  const [computerMoved, setComputerMoved] = useState(false);
+  const [computerStreak, setComputerStreak] = useState(false);
   const [randomCell, setRandomCell] = useState(null);
   const [randomCells, setRandomCells] = useState([]);
 
@@ -66,12 +68,19 @@ const App = () => {
       setPlayerMoved(true);
       setTurnMessage("computer's turn");
     }
+    setComputerMoved(false);
   };
 
   const attackPlayer = () => {
     generateRndCell();
     computer.randomAttack(player, randomCell.x, randomCell.y);
+    if (randomCell.ship) {
+      setComputerStreak(true);
+    } else {
+      setComputerStreak(false);
+    }
     setTurnMessage("player's turn");
+    setComputerMoved(true);
     setPlayerMoved(false);
   };
 
@@ -115,6 +124,10 @@ const App = () => {
   useEffect(() => {
     if (hitStreak) setPlayerMoved(true);
   }, [hitStreak, playerMoved]);
+
+  useEffect(() => {
+    if (computerStreak) attackPlayer();
+  }, [computerStreak]);
 
   useEffect(() => {
     if (shipAmount === 5) setEnoughShips(true);
