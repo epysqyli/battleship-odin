@@ -43,7 +43,6 @@ h1 {
   font-size: 2rem;
   border: 2px solid black;
   padding: 15px 20px;
-  border-radius: 15px;
   cursor: pointer;
 
   &:hover {
@@ -55,7 +54,7 @@ h1 {
   }
 }
 
-.game-start {
+.turns-info {
   width: fit-content;
   margin: 5vh auto 0;
   border: 2px solid black;
@@ -63,4 +62,31 @@ h1 {
   text-transform: uppercase;
   padding: 2vh 5vw;
   font-size: 1.5rem;
+}
+
+.game-start {
+  width: 50%;
+  margin: 5vh auto 0;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 2vh 5vw;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: crimson;
+  color: whitesmoke;
+  transition: opacity 750ms;
+
+  &:hover {
+    background-color: red;
+  }
+
+  &:active {
+    color: red;
+    background-color: white;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  cursor: default;
 }

@@ -7,7 +7,8 @@ import "./styles/app.scss";
 const App = () => {
   const [player, setPlayer] = useState(createPlayer("player"));
   const [computer, setComputer] = useState(createPlayer("computer"));
-  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(true);
+  const [enoughShips, setEnoughShips] = useState(false);
+  const [playerShipsPlaced, setPlayerShipsPlaced] = useState(false);
   const [currentShip, setCurrentShip] = useState();
   const [chosenCell, setChosenCell] = useState({ x: null, y: null });
   const [shipAmount, setShipAmount] = useState(0);
@@ -58,7 +59,6 @@ const App = () => {
     setTurnMessage("player's turn");
     computer.randomAttack(player);
     setPlayerMoved(false);
-    console.log("player was randomly attacked");
   };
 
   const placeShip = (shipName, direction, x, y) => {
@@ -80,9 +80,6 @@ const App = () => {
     let newShipAmount = shipAmount;
     newShipAmount++;
     setShipAmount(newShipAmount);
-    if (newShipAmount === 5) {
-      setPlayerShipsPlaced(true);
-    }
   };
 
   useEffect(() => {
@@ -104,6 +101,10 @@ const App = () => {
     if (hitStreak) setPlayerMoved(true);
   }, [hitStreak, playerMoved]);
 
+  useEffect(() => {
+    if (shipAmount === 5) setEnoughShips(true);
+  }, [shipAmount]);
+
   if (playerShipsPlaced) {
     return (
       <div className="App">
@@ -120,7 +121,7 @@ const App = () => {
             getCellInfo={attackComputer}
           ></Gameboard>
         </div>
-        <div className="game-start">{turnMessage}</div>
+        <div className="turns-info">{turnMessage}</div>
       </div>
     );
   } else {
@@ -145,6 +146,14 @@ const App = () => {
               {shipDirection === "horizontal" ? "horizontal" : "vertical"}
             </div>
           </div>
+        </div>
+        <div
+          className={enoughShips ? "game-start" : "game-start hidden"}
+          onClick={() => {
+            if (enoughShips) setPlayerShipsPlaced(true);
+          }}
+        >
+          start game
         </div>
       </div>
     );
