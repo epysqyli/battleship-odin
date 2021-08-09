@@ -45,7 +45,10 @@ const App = () => {
   };
 
   const generateRndCell = () => {
-    const rndCell = computer.chooseRandomCell(player);
+    let rndCell = computer.chooseRandomCell(player);
+    while (randomCells.includes(rndCell)) {
+      rndCell = computer.chooseRandomCell(player);
+    }
     setRandomCell(rndCell);
     let newRandomCells = [...randomCells];
     newRandomCells.push(rndCell);
