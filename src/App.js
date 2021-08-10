@@ -42,7 +42,6 @@ const App = () => {
   };
 
   const getCell = (cell) => {
-    console.log(cell);
     setChosenCell({ x: cell.x, y: cell.y });
   };
 
@@ -136,7 +135,7 @@ const App = () => {
   useEffect(() => {
     if (computerStreak) setComputerMoved(true);
   }, [computerStreak, computerMoved]);
-  // end of computer streak logic 
+  // end of computer streak logic
 
   useEffect(() => {
     if (shipAmount === 5) setEnoughShips(true);
