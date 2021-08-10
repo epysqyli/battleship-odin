@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/battleship-odin/static/css/main.566a6025.chunk.css",
+    "main.js": "/battleship-odin/static/js/main.96abe808.chunk.js",
+    "main.js.map": "/battleship-odin/static/js/main.96abe808.chunk.js.map",
+    "runtime-main.js": "/battleship-odin/static/js/runtime-main.a2a4e73a.js",
+    "runtime-main.js.map": "/battleship-odin/static/js/runtime-main.a2a4e73a.js.map",
+    "static/js/2.ee63973c.chunk.js": "/battleship-odin/static/js/2.ee63973c.chunk.js",
+    "static/js/2.ee63973c.chunk.js.map": "/battleship-odin/static/js/2.ee63973c.chunk.js.map",
+    "index.html": "/battleship-odin/index.html",
+    "static/css/main.566a6025.chunk.css.map": "/battleship-odin/static/css/main.566a6025.chunk.css.map",
+    "static/js/2.ee63973c.chunk.js.LICENSE.txt": "/battleship-odin/static/js/2.ee63973c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2a4e73a.js",
+    "static/js/2.ee63973c.chunk.js",
+    "static/css/main.566a6025.chunk.css",
+    "static/js/main.96abe808.chunk.js"
+  ]
+}
