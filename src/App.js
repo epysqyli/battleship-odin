@@ -21,6 +21,7 @@ const App = () => {
   const [computerStreak, setComputerStreak] = useState(false);
   const [randomCell, setRandomCell] = useState(null);
   const [randomCells, setRandomCells] = useState([]);
+  const [winner, setWinner] = useState(null);
 
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
@@ -56,11 +57,19 @@ const App = () => {
     setRandomCells(newRandomCells);
   };
 
+  const checkWinner = () => {
+    if (winner) console.log(`${winner} wins`);
+  };
+
   const attackComputer = (cell) => {
     player.attack(cell.x, cell.y, computer);
     if (cell.ship) {
       setHitStreak(true);
       setPlayerMoved(false);
+      if (computer.playerBoard.allSunk()) {
+        setWinner(player.playerBoard.owner);
+        checkWinner();
+      }
       setTurnMessage("player's turn");
     } else {
       setHitStreak(false);
@@ -76,6 +85,10 @@ const App = () => {
     if (randomCell.ship) {
       setComputerStreak(true);
       setComputerMoved(false);
+      if (player.playerBoard.allSunk()) {
+        setWinner(computer.playerBoard.owner);
+        checkWinner();
+      }
     } else {
       setComputerStreak(false);
       setComputerMoved(true);
@@ -118,8 +131,9 @@ const App = () => {
 
   // manages streak logic for player
   useEffect(() => {
-    if (playerShipsPlaced && playerMoved && !hitStreak)
+    if (playerShipsPlaced && playerMoved && !hitStreak) {
       setTimeout(attackPlayer, 1000);
+    }
   }, [hitStreak, playerMoved]);
 
   useEffect(() => {
