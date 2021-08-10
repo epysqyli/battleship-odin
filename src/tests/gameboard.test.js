@@ -1,4 +1,5 @@
 import gameboard from "../lib/gameboard";
+import createPlayer from "../lib/player";
 
 test("Gameboard has a 10x10 board with 100 cells", () => {
   const testBoard = gameboard();
@@ -6,13 +7,15 @@ test("Gameboard has a 10x10 board with 100 cells", () => {
 });
 
 test("Empty coords cell should have null ship property", () => {
-  let testBoard = gameboard();
+  const player = createPlayer("player");
+  let testBoard = player.playerBoard;
   expect(testBoard.board[25].ship).toBeNull();
 });
 
 describe("places the ships according to ship type and given coords", () => {
   test("places the carrier horizontally to take 5 cells", () => {
-    let testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("carrier", "horizontal", 3, 3);
     expect(testBoard.getCoords(3, 3).ship.name).toEqual("carrier");
     expect(testBoard.getCoords(4, 3).ship.name).toEqual("carrier");
@@ -22,7 +25,8 @@ describe("places the ships according to ship type and given coords", () => {
   });
 
   test("places the carrier vertically to take 5 cells", () => {
-    let testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("carrier", "vertical", 3, 3);
     expect(testBoard.getCoords(3, 3).ship.name).toEqual("carrier");
     expect(testBoard.getCoords(3, 4).ship.name).toEqual("carrier");
@@ -32,7 +36,8 @@ describe("places the ships according to ship type and given coords", () => {
   });
 
   test("places the cruiser vertically to take 3 cells", () => {
-    let testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("cruiser", "vertical", 3, 3);
     expect(testBoard.getCoords(3, 3).ship.name).toEqual("cruiser");
     expect(testBoard.getCoords(3, 4).ship.name).toEqual("cruiser");
@@ -40,7 +45,8 @@ describe("places the ships according to ship type and given coords", () => {
   });
 
   test("places the destroyer horizontally to take 2 cells", () => {
-    let testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("destroyer", "horizontal", 5, 5);
     expect(testBoard.getCoords(5, 5).ship.name).toEqual("destroyer");
     expect(testBoard.getCoords(6, 5).ship.name).toEqual("destroyer");
@@ -48,7 +54,8 @@ describe("places the ships according to ship type and given coords", () => {
 });
 
 describe("Throws error on invalid coordinates upon placing ships", () => {
-  let testBoard = gameboard();
+  const player = createPlayer("player");
+  let testBoard = player.playerBoard;
 
   test("if x or y are greater than 10", () => {
     expect(() => testBoard.placeShip("carrier", "horizontal", 11, 5)).toThrow(
@@ -78,14 +85,16 @@ describe("Throws error on invalid coordinates upon placing ships", () => {
 
 describe("Each gameboard has a reiceive attack method that takes coords and:", () => {
   test("records the missed attack", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.receiveAttack(5, 5);
     const hitCell = testBoard.getCoords(5, 5);
     expect(hitCell.miss).toBeTruthy();
   });
 
   test("records the successful attack on the board cell level", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("submarine", "horizontal", 4, 5);
     testBoard.receiveAttack(5, 5);
     const hitCell = testBoard.getCoords(5, 5);
@@ -93,7 +102,8 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
   });
 
   test("calls the hit function on the attacked ship position horizontally", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("cruiser", "horizontal", 2, 2);
     testBoard.receiveAttack(4, 2);
     const hitCell = testBoard.getCoords(4, 2);
@@ -102,7 +112,8 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
   });
 
   test("calls the hit function on the attacked ship position vertically", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("submarine", "vertical", 6, 4);
     testBoard.receiveAttack(6, 5);
     const hitCell = testBoard.getCoords(6, 5);
@@ -111,7 +122,8 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
   });
 
   test("throws and error if the cell has already been hit", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.receiveAttack(4, 4);
     expect(() => testBoard.receiveAttack(4, 4)).toThrow(
       "Cell has already been hit"
@@ -121,14 +133,16 @@ describe("Each gameboard has a reiceive attack method that takes coords and:", (
 
 describe("gameboard reports whether all ships have been sunk", () => {
   test("returns false if not all ships are sunk", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("cruiser", "vertical", 4, 4);
     testBoard.placeShip("submarine", "horizontal", 2, 3);
     expect(testBoard.allSunk()).toBeFalsy();
   });
 
   test("returns true if all ships are sunk", () => {
-    const testBoard = gameboard();
+    const player = createPlayer("player");
+    let testBoard = player.playerBoard;
     testBoard.placeShip("submarine", "horizontal", 2, 3);
     testBoard.receiveAttack(2, 3);
     testBoard.receiveAttack(3, 3);
