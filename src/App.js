@@ -23,6 +23,26 @@ const App = () => {
   const [randomCells, setRandomCells] = useState([]);
   const [winner, setWinner] = useState(null);
 
+  const resetApp = () => {
+    setPlayer(createPlayer("player"));
+    setComputer(createPlayer("computer"));
+    setEnoughShips(false);
+    setPlayerShipsPlaced(false);
+    setCurrentShip();
+    setChosenCell({ x: null, y: null });
+    setShipAmount(0);
+    setShipPlaced([false, 0]);
+    setShipDirection("horizontal");
+    setTurnMessage("player's turn");
+    setPlayerMoved(false);
+    setHitStreak(false);
+    setComputerMoved(false);
+    setComputerStreak(false);
+    setRandomCell(null);
+    setRandomCells([]);
+    setWinner(null);
+  };
+
   const changeDirection = () => {
     if (shipDirection === "horizontal") {
       setShipDirection("vertical");
@@ -159,7 +179,13 @@ const App = () => {
     return (
       <div className="App">
         <h1>Odin BattleShip</h1>
-        <div className="container">
+        <div className={winner ? "winner-box" : "hidden"}>
+          <div>{winner} has won - congrats!</div>
+          <div className="btn" onClick={() => resetApp()}>
+            play again
+          </div>
+        </div>
+        <div className={winner ? "container secondary" : "container"}>
           <Gameboard
             owner={player}
             firstStageOver={playerShipsPlaced}
