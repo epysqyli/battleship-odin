@@ -11,7 +11,6 @@ const Cell = (props) => {
     if (cell.ship) {
       return (
         <div
-          // className={cell.attack ? "cell hit" : "cell clickable"}
           className={
             cell.ship.isSunk()
               ? "cell sunk"

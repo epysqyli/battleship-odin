@@ -12,12 +12,12 @@
 h1 {
   text-align: center;
   padding-top: 2vh;
-  padding-bottom: 1vh;
+  padding-bottom: 2vh;
   text-transform: uppercase;
   font-size: 2.25rem;
   color: white;
-  background-color: rgba(30, 20, 40, 0.5);
-  box-shadow: 0 0 5px 2px white;
+  background-color: rgba(0, 50, 40, 0.5);
+  box-shadow: 0 0 10px 4px white;
 }
 
 .container {
@@ -56,7 +56,7 @@ h1 {
 
 .turns-info {
   width: fit-content;
-  margin: 5vh auto 0;
+  margin: 3vh auto 0;
   text-align: center;
   text-transform: uppercase;
   padding: 2vh 5vw;
@@ -66,8 +66,8 @@ h1 {
 }
 
 .game-start {
-  width: 50%;
-  margin: 5vh auto 0;
+  width: 30%;
+  margin: 3vh auto 0;
   text-align: center;
   text-transform: uppercase;
   padding: 2vh 5vw;
