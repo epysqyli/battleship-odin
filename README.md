@@ -4,3 +4,6 @@ https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/javascript
 
 Error management to be fixed
 Randomized computer positions to be added
+
+Check live here:
+https://epysqyli.github.io/battleship-odin/
